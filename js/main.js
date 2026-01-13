@@ -1,0 +1,254 @@
+const menuClose = document.getElementById('menuClose');
+const menuOpen = document.getElementById('menuOpen');
+const aside = document.querySelector('aside'); 
+
+function toggleMenu() {
+  if (menuOpen.style.display === 'none' || menuOpen.style.display === '') {
+    menuOpen.style.display = 'block';
+    menuClose.style.display = 'none';
+    aside.classList.add('active');
+  } else {
+    menuOpen.style.display = 'none';
+    menuClose.style.display = 'block';
+    aside.classList.remove('active');
+  }
+}
+
+menuClose.addEventListener('click', toggleMenu);
+menuOpen.addEventListener('click', toggleMenu);
+
+const modalOverlay =document.querySelector('.modal-overlay')
+const btnPrimary =document.querySelector('.btn-primary')
+const closeModal =document.getElementById('closeModal')
+const selectButtons = [
+  'select1',
+  'select2',
+  'select3',
+  'select4',
+  'select',
+];
+
+selectButtons.forEach(id => {
+  const btn = document.getElementById(id);
+
+  btn.addEventListener('click', () => {
+    modalOverlay.style.display = 'block';
+    console.log('clicked');
+  });
+});
+
+btnPrimary.addEventListener('click',()=>{
+  modalOverlay.style.display='block'
+  console.log('clicked')
+})
+
+
+closeModal.addEventListener('click',()=>{
+  modalOverlay.style.display='none'
+})
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ================= TECH ALERT SYSTEM ================= */
+
+  const TechAlert = (() => {
+    if (!document.getElementById("tech-alert-style")) {
+      const style = document.createElement("style");
+      style.id = "tech-alert-style";
+      style.innerHTML = `
+        .tech-alert-wrapper {
+          position: fixed;
+          top: 2rem;
+          right: 2rem;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+        .tech-alert {
+          min-width: 28rem;
+          max-width: 34rem;
+          padding: 1.6rem 1.8rem;
+          border-radius: 1.2rem;
+          backdrop-filter: blur(12px);
+          background: rgba(2,6,23,.88);
+          border: .1rem solid rgba(56,189,248,.4);
+          box-shadow: 0 2rem 5rem rgba(0,0,0,.6);
+          color: #e5e7eb;
+          display: flex;
+          gap: 1.2rem;
+          animation: slideIn .35s ease forwards;
+        }
+        .tech-alert.success { border-color: rgba(34,197,94,.6); }
+        .tech-alert.error { border-color: rgba(239,68,68,.6); }
+        .tech-alert.info { border-color: rgba(56,189,248,.6); }
+        .tech-alert h4 {
+          margin: 0;
+          font-size: 1.4rem;
+          font-weight: 600;
+        }
+        .tech-alert p {
+          margin: .4rem 0 0;
+          font-size: 1.3rem;
+          color: #cbd5f5;
+        }
+        .tech-alert-close {
+          margin-left: auto;
+          cursor: pointer;
+          color: #94a3b8;
+        }
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateX(1.6rem); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideOut {
+          to { opacity: 0; transform: translateX(1.6rem); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    let wrapper = document.querySelector(".tech-alert-wrapper");
+    if (!wrapper) {
+      wrapper = document.createElement("div");
+      wrapper.className = "tech-alert-wrapper";
+      document.body.appendChild(wrapper);
+    }
+
+    const show = ({ type, title, message, duration = 4000 }) => {
+      const alert = document.createElement("div");
+      alert.className = `tech-alert ${type}`;
+      alert.innerHTML = `
+        <div>
+          <h4>${title}</h4>
+          <p>${message}</p>
+        </div>
+        <div class="tech-alert-close">✕</div>
+      `;
+      wrapper.appendChild(alert);
+
+      const remove = () => {
+        alert.style.animation = "slideOut .3s ease forwards";
+        setTimeout(() => alert.remove(), 300);
+      };
+
+      alert.querySelector(".tech-alert-close").onclick = remove;
+      setTimeout(remove, duration);
+    };
+
+    return {
+      success: (t, m, d) => show({ type: "success", title: t, message: m, duration: d }),
+      error: (t, m, d) => show({ type: "error", title: t, message: m, duration: d }),
+      info: (t, m, d) => show({ type: "info", title: t, message: m, duration: d })
+    };
+  })();
+
+  /* ================= FORM LOGIC ================= */
+
+  const form = document.querySelector(".enroll-modal");
+  const modal = document.getElementById("modal");
+  const submitBtn = form.querySelector(".submit-btn");
+
+  const fields = {
+    fullName: document.getElementById("fullName"),
+    email: document.getElementById("email"),
+    phone: document.getElementById("phoneNumber"),
+    age: document.getElementById("age"),
+    occupation: document.getElementById("occupation"),
+    education: document.getElementById("eduBackground"),
+    background: document.getElementById("backgroundState"),
+    course: document.getElementById("course"),
+  };
+
+  const showError = (field, message) => {
+    clearError(field);
+    field.style.borderColor = "#ef4444";
+    const error = document.createElement("small");
+    error.className = "error-msg";
+    error.style.color = "#ef4444";
+    error.style.marginTop = "0.6rem";
+    error.textContent = message;
+    field.closest(".form-group").appendChild(error);
+  };
+
+  const clearError = (field) => {
+    field.style.borderColor = "";
+    field.closest(".form-group")?.querySelector(".error-msg")?.remove();
+  };
+
+  const isEmailValid = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isPhoneValid = phone => /^\+?[0-9\s\-]{9,15}$/.test(phone);
+
+  const validateForm = () => {
+    let valid = true;
+
+    if (!fields.fullName.value.trim() || fields.fullName.value.trim().split(" ").length < 2)
+      (showError(fields.fullName, "Enter your full name"), valid = false);
+
+    if (!isEmailValid(fields.email.value))
+      (showError(fields.email, "Enter a valid email"), valid = false);
+
+    if (!isPhoneValid(fields.phone.value))
+      (showError(fields.phone, "Enter a valid phone number"), valid = false);
+
+    if (fields.age.value < 10 || fields.age.value > 100)
+      (showError(fields.age, "Age must be between 10 and 100"), valid = false);
+
+    if (!fields.occupation.value.trim())
+      (showError(fields.occupation, "Occupation is required"), valid = false);
+
+    if (!fields.education.value)
+      (showError(fields.education, "Select education level"), valid = false);
+
+    if (fields.background.value.trim().length < 50)
+      (showError(fields.background, "Minimum 50 characters required"), valid = false);
+
+    if (!fields.course.value)
+      (showError(fields.course, "Select a course"), valid = false);
+
+    if (!valid)
+      document.querySelector(".error-msg")?.scrollIntoView({ behavior: "smooth" });
+
+    return valid;
+  };
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    document.querySelectorAll(".error-msg").forEach(e => e.remove());
+
+    if (!validateForm()) {
+      TechAlert.error("Validation Error", "Please fix the highlighted fields.");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    TechAlert.info("Submitting", "Processing your registration...");
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: new FormData(form),
+      headers: { "Accept": "application/json" }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.success) throw new Error();
+        TechAlert.success("Success 🎉", "You are successfully registered!");
+        form.reset();
+        modal.style.display = "none";
+      })
+      .catch(() => {
+        TechAlert.error("Submission Failed", "Please try again later.");
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+      });
+  });
+
+  Object.values(fields).forEach(f => {
+    f.addEventListener("input", () => clearError(f));
+    f.addEventListener("change", () => clearError(f));
+  });
+
+});

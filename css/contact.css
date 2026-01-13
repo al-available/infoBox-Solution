@@ -1,0 +1,874 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+  font-size: 62.5%; 
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #050b16;
+  color: #ffffff;
+}
+/* nav starts from here  */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96%;
+  z-index: 9999;
+  padding: 1.2rem 2rem; 
+}
+
+.nav-container {
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2.4rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  width: 90%;
+}
+
+/* INFO BOX SOLUTION – LOGO STYLES */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+
+  padding: 0.6rem 1.6rem;
+  border-radius: 1.8rem;
+
+  background: linear-gradient(
+    180deg,
+    rgba(10, 15, 35, 0.9),
+    rgba(4, 8, 22, 0.95)
+  );
+
+  border: 0.1rem solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 2.4rem rgba(0,229,255,0.18);
+}
+
+/* SVG container */
+.logo-icon {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(0,229,255,0.35),
+    rgba(2,132,199,0.6)
+  );
+
+  box-shadow:
+    0 0 1.6rem rgba(0,229,255,0.6),
+    inset 0 0 0 0.1rem rgba(255,255,255,0.25);
+}
+
+/* SVG itself */
+.logo-icon img {
+  width: 2rem;
+  height: 2rem;
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 0.6rem rgba(0,229,255,0.8));
+}
+
+/* Brand text */
+.logo span {
+  font-size: 2.2rem;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.04rem;
+
+  background: linear-gradient(
+    90deg,
+    #00e5ff,
+    #60a5fa
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+    background-clip: text;
+  color: transparent;
+
+  animation: logoGradientMove 6s linear infinite;
+}
+
+/* Emphasis word */
+.logo strong {
+  font-weight: 500;
+
+  /* Dark → purple gradient */
+  background: linear-gradient(
+    90deg,
+    #1e1b4b,   /* deep indigo (dark base) */
+    #3b1579,   /* rich purple */
+    #a78bfa,   /* soft violet highlight */
+    #6d28d9,
+    #1e1b4b
+  );
+  background-size: 300% 100%;
+
+  -webkit-background-clip: text;
+    background-clip: text;
+  color: transparent;
+
+  animation: logoStrongGradient 15s linear infinite;
+}
+
+/* Smooth gradient motion */
+@keyframes logoStrongGradient {
+  from { background-position: 0% 50%; }
+  to   { background-position: 300% 50%; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logo strong {
+    animation: none;
+  }
+}
+
+/* Gradient animation */
+@keyframes logoGradientMove {
+  from { background-position: 0% 50%; }
+  to   { background-position: 200% 50%; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logo span {
+    animation: none;
+  }
+}
+
+
+/* NAV LINKS  */
+.nav-links {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  padding: 0.8rem 1.8rem;
+  border-radius: 2.4rem;
+  transition: color 0.3s ease;
+}
+
+/*  Animated Glow Hover */
+.nav-links a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, var(--primary), transparent 70%);
+  opacity: 0;
+  filter: blur(1.4rem);
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.nav-links a:hover {
+  color: #e0faff;
+}
+
+.nav-links a:hover::before {
+  opacity: 1;
+}
+
+/* Active */
+.nav-links a.active {
+  color: #e0faff;
+  background: rgba(0, 229, 255, 0.12);
+  box-shadow: 0 0 1.2rem var(--primary-soft);
+}
+.menuClose{
+  display: none;
+  width: 5rem;
+height: auto;
+    filter: brightness(0) invert(1);
+}
+.navMenuOpen{
+    display: none;
+    width: 5rem;
+height: auto;
+    filter: brightness(0) invert(1);
+}
+/* aside link for small screens */
+/* aside link for small screens */
+aside{
+  position: fixed;
+  top: 7.5rem; /* below navbar */
+  right: 2rem;
+  width: 90%;
+  max-width: 32rem;
+  height: auto;
+  margin: 2rem auto;
+
+  /* glass effect */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.4rem;
+
+  /* hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-1rem);
+  transition: all 0.3s ease;
+  z-index: 9998;
+}
+
+/* when aside is open */
+aside.active{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+aside > a{
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #e5e7eb;
+
+  padding: 1.2rem 1.6rem;
+  border-radius: 1.4rem;
+
+  /* glass look */
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transition: 
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+/* active / current link */
+aside > a.active{
+  color: #00f6ff;
+  background: rgba(0, 246, 255, 0.18);
+  box-shadow: 0 0 2.4rem rgba(0, 246, 255, 0.45);
+}
+
+/* subtle divider effect */
+aside > a:not(:last-child){
+  position: relative;
+}
+
+aside > a:not(:last-child)::after{
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 10%;
+  width: 80%;
+  height: 0.1rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.15),
+    transparent
+  );
+}
+
+/* nav ends here  */
+
+/* contact starts here */
+.contact {
+  padding: 15rem 2rem;
+  background:
+    linear-gradient(transparent 95%, rgba(255,255,255,0.04) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.04) 96%),
+    #350091;
+  background-size: 4rem 4rem;
+}
+
+/* =========================
+   HEADER – SLIDE DOWN
+========================= */
+.contact__header {
+  max-width: 80rem;
+  margin: 13rem auto 6rem;
+  text-align: center;
+
+  opacity: 0;
+  animation: contactSlideDown 0.9s ease-out forwards;
+}
+
+.contact__badge {
+  display: inline-block;
+  padding: 0.6rem 1.6rem;
+  border-radius: 3rem;
+  font-size: 1.2rem;
+  color: #00e5ff;
+  border: 0.1rem solid rgba(0, 229, 255, 0.4);
+  margin-bottom: 2rem;
+
+  opacity: 0;
+  animation: contactSlideDown 0.9s ease-out forwards;
+  animation-delay: 0.05s;
+}
+
+.contact__title {
+  font-size: 4.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.6rem;
+
+  opacity: 0;
+  animation: contactSlideDown 0.9s ease-out forwards;
+  animation-delay: 0.12s;
+}
+
+.contact__title span {
+  background: linear-gradient(90deg, #00e5ff, #7b5cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact__text {
+  font-size: 1.6rem;
+  color: #b5c0d0;
+  line-height: 1.6;
+
+  opacity: 0;
+  animation: contactSlideDown 0.9s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+/* =========================
+   CARDS – SLIDE UP
+========================= */
+.contact__cards {
+  max-width: 110rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: 3rem;
+}
+
+.contact__card {
+  padding: 3.5rem 3rem;
+  background: rgba(10, 18, 35, 0.8);
+  border-radius: 2rem;
+  text-align: center;
+  border: 0.1rem solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(1.2rem);
+
+  opacity: 0;
+  animation: contactSlideUp 0.9s ease-out forwards;
+  animation-delay: 0.3s;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact__card:hover {
+  transform: translateY(-0.6rem);
+  box-shadow: 0 0 4rem rgba(0, 229, 255, 0.25);
+}
+
+/* ICON */
+.contact__icon {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto 2rem;
+  border-radius: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #00e5ff, #0284c7);
+  box-shadow: 0 0 3.2rem rgba(0,229,255,0.6);
+}
+
+.contact__icon img {
+  width: 2.8rem;
+  height: 2.8rem;
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 0.6rem rgba(0,229,255,0.8));
+}
+
+.contact__card h3 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.contact__main {
+  font-size: 1.6rem;
+  color: #00e5ff;
+  margin-bottom: 0.6rem;
+}
+
+.contact__card span {
+  font-size: 1.3rem;
+  color: #a9b4c6;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes contactSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contactSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  .contact__header,
+  .contact__badge,
+  .contact__title,
+  .contact__text,
+  .contact__card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* contact ends here */
+
+/* social start here */
+.social {
+  padding: 8rem 2rem;
+   background:
+    linear-gradient(transparent 95%, rgba(255,255,255,0.04) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.04) 96%),
+    #0c0120;
+  background-size: 4rem 4rem;
+}
+
+.social__header {
+  text-align: center;
+  max-width: 80rem;
+  margin: 0 auto 6rem;
+}
+
+.social__header h2 {
+  font-size: 4rem;
+  color: #ffffff;
+  margin-bottom: 1.6rem;
+}
+
+.social__header h2 span {
+  background: linear-gradient(90deg, #00e5ff, #7b5cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.social__header p {
+  font-size: 1.6rem;
+  color: #b5c0d0;
+}
+
+.social__grid {
+  max-width: 120rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  gap: 3rem;
+}
+.social__grid>a{
+    text-decoration: none;
+}
+
+.social__card {
+  padding: 3.2rem;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 0.1rem solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  color: var(--brand);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social__card img {
+  width: 3.6rem;
+  height: 3.6rem;
+  margin-bottom: 1.6rem;
+    filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 0.6rem var(--brand));
+
+}
+
+.social__card h3 {
+  font-size: 1.7rem;
+  margin-bottom: 0.6rem;
+  color: var(--brand);
+}
+
+.social__card span {
+  font-size: 1.3rem;
+  color: #a9b4c6;
+}
+
+.social__card:hover {
+  transform: translateY(-0.6rem);
+  box-shadow: 0 0 4rem color-mix(in srgb, var(--brand), transparent 60%);
+}
+
+/* BRAND COLORS (MATCH IMAGE) */
+.whatsapp { --brand: #25d366; }
+.telegram { --brand: #229ed9; }
+.twitter { --brand: #1da1f2; }
+.linkedin { --brand: #0a66c2; }
+.instagram { --brand: #ff2e92; }
+.facebook { --brand: #1877f2; }
+.youtube { --brand: #ff0000; }
+.tiktok { --brand: #ffffff; }
+
+/* social end here  */
+
+
+/* cta starts here*/
+.cta {
+  padding: 7rem 2rem;
+  background: #050b16;
+  position: relative;
+}
+
+.cta__content {
+  max-width: 90rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.6rem;
+}
+
+.cta h2 span {
+  background: linear-gradient(90deg, #00e5ff, #7b5cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cta p {
+  font-size: 1.6rem;
+  color: #b5c0d0;
+  max-width: 70rem;
+  margin: 0 auto 3.6rem;
+  line-height: 1.6;
+}
+
+.cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 2.6rem;
+  border-radius: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta__btn img {
+  width: 1.8rem;
+  height: 1.8rem;
+    filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 0.6rem rgba(0,229,255,0.8));
+}
+
+/* PRIMARY (WhatsApp) */
+.cta__btn--primary {
+  background: #00e5ff;
+  color: #050b16;
+  box-shadow: 0 0 3rem rgba(0, 229, 255, 0.6);
+}
+
+.cta__btn--primary:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0 4.5rem rgba(0, 229, 255, 0.9);
+}
+
+/* OUTLINE (Telegram) */
+.cta__btn--outline {
+  color: #00e5ff;
+  border: 0.1rem solid rgba(0, 229, 255, 0.5);
+  background: transparent;
+}
+
+.cta__btn--outline:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0 3rem rgba(0, 229, 255, 0.4);
+}
+
+/* footer start here  */
+.footer {
+  background:
+    linear-gradient(transparent 95%, rgba(255,255,255,0.04) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.04) 96%),
+    #04060e;
+  background-size: 4rem 4rem;
+  padding: 6rem 3.2rem 3rem;
+  color: #cbd5f5;
+}
+
+.footer-container {
+  max-width: 120rem;
+  margin: auto;
+}
+
+/* Top section */
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+}
+
+/* Brand */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 30.8rem;
+  margin: 0rem auto;
+  padding: 0.6rem 1rem;
+  border-radius: 1.8rem;
+
+  background: linear-gradient(
+    180deg,
+    rgba(10, 15, 35, 0.9),
+    rgba(4, 8, 22, 0.95)
+  );
+
+  border: 0.1rem solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 2.4rem rgba(0,229,255,0.18);
+}
+
+/* SVG container */
+.footer-logo-icon {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(0,229,255,0.35),
+    rgba(2,132,199,0.6)
+  );
+
+  box-shadow:
+    0 0 1.6rem rgba(0,229,255,0.6),
+    inset 0 0 0 0.1rem rgba(255,255,255,0.25);
+}
+
+/* SVG itself */
+.footer-logo-icon img {
+  width: 2rem;
+  height: 2rem;
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 0.6rem rgba(0,229,255,0.8));
+}
+
+/* Brand text */
+.footer-logo span {
+  font-size: 2.2rem;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.04rem;
+
+  background: linear-gradient(
+    90deg,
+    #00e5ff,
+    #60a5fa
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+    background-clip: text;
+  color: transparent;
+
+  animation: logoGradientMove 6s linear infinite;
+}
+/* Gradient animation */
+@keyframes logoGradientMove {
+  from { background-position: 0% 50%; }
+  to   { background-position: 200% 50%; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .footer-logo span {
+    animation: none;
+  }
+}
+/* Emphasis word */
+.footer-logo >span >strong {
+  font-weight: 500;
+
+  background: linear-gradient(
+    90deg,
+    #1e1b4b,   /* deep indigo */
+    #6d28d9,   /* rich purple */
+    #a78bfa,   /* soft violet */
+    #6d28d9,
+    #1e1b4b
+  );
+  background-size: 300% 100%;
+
+  -webkit-background-clip: text;
+    background-clip: text;
+  color: transparent;
+
+  animation: footerLogoGradient 15s linear infinite;
+}
+
+@keyframes footerLogoGradient {
+  from { background-position: 0% 50%; }
+  to   { background-position: 300% 50%; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .footer-logo strong {
+    animation: none;
+  }
+}
+
+
+
+.footer-brand p {
+  margin-top: 1.6rem;
+  font-size: 1.4rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 40rem;
+  text-align: center;
+  margin: 0rem auto;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.8rem;
+  color: #7dd3fc;
+}
+
+.footer-logo strong {
+  color: #a78bfa;
+}
+
+/* Links */
+.footer-links h4 {
+  font-size: 1.6rem;
+  margin-bottom: 1.6rem;
+  color: #e5e7eb;
+}
+
+.footer-links a {
+  display: block;
+  font-size: 1.4rem;
+  color: #94a3b8;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #00e5ff;
+}
+
+/* Divider */
+.footer-divider {
+  margin: 4rem 0 2.4rem;
+  height: 0.1rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+}
+
+/* Bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  font-size: 1.3rem;
+  color: #94a3b8;
+}
+
+.heart {
+  color: #ef4444;
+  margin-inline: 0.2rem;
+}
+

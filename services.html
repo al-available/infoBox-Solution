@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="./img/package-variant-closed-plus.svg"  sizes="70x70">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Ga+Maamli&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Ga+Maamli&family=Oswald:wght@200..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/services.css">
+<link rel="stylesheet" href="./css/servicesMedia.css">
+<script src="./js/services.js" defer></script>
+<script src="./js/main.js" defer></script>
+    <title>infoBox Solution ltd</title>
+</head>
+<body>
+     <header class="navbar">
+  <div class="nav-container">
+
+<div class="logo">
+  <div class="logo-icon">
+    <img src="./img/package-variant-closed-plus.svg" alt="Info Box Logo" />
+  </div>
+  <span>Info Box <strong>Solution</strong></span>
+</div>
+
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="information.html" >Information</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="contact.html" >Contact</a>
+    </nav>
+
+
+        <img id="menuClose" class="menuClose" src="./img/menu.png" alt="menu Bar">
+        <img id="menuOpen" class="navMenuOpen"src="./img/menu-open.png" alt="menu Bar">
+
+  </div>
+          <aside>
+        <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="information.html"  >Information</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="contact.css" >Contact</a>
+        </aside>
+</header>
+<section class="hero">
+  <div class="hero__content">
+
+    <span class="hero__badge">
+      ⚡ Enterprise-Grade Tech Services
+    </span>
+
+    <h1 class="hero__title">
+      Transforming Ideas Into<br>
+      <span>Digital Reality</span>
+    </h1>
+
+    <p class="hero__text">
+      From web development to enterprise security, we deliver cutting-edge
+      technology solutions that power your business forward and drive measurable results.
+    </p>
+
+    <div class="hero__actions">
+      <a href="contact.html" class="hero__btn hero__btn--primary">
+        <img src="./img/whatsapp.svg" alt="">
+        Get Free Consultation
+      </a>
+
+      <a href="tel:+233502514708" class="hero__btn hero__btn--secondary">
+        <img src="./img/phone.svg" alt="">
+        Call Us Now
+      </a>
+    </div>
+
+  </div>
+</section>
+<main>
+<div class="form-container">
+  <form
+    class="booking-form"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+  >
+    <!-- Web3Forms Access Key -->
+    <input type="hidden" name="access_key" value="2f11c8a8-ed81-475f-9755-6cb687139c00" />
+
+    <h2 class="form-title">Booking Form</h2>
+    <p class="form-subtitle">Fill in your details to request this service</p>
+
+        <button type="button" class="close-btn" id="closeBtn">✕</button>
+
+    <label>
+      <span>Type of Service *</span>
+      <select id="service" name="service" required>
+        <option selected value="">Select service</option>
+        <option>Web Development</option>
+        <option>Cyber Security</option>
+        <option>Networking Solutions</option>
+        <option>Database Solutions</option>
+        <option>Graphic Design</option>
+        <option>Photography & Photo Editing</option>
+        <option >Video & Video Editing</option>
+        <option>After Effects & Animations</option>
+      </select>
+    </label>
+
+    <label>
+      <span>Full Name *</span>
+      <input type="text" id="fullName" name="name" placeholder="Enter your full name" required />
+    </label>
+
+    <div class="grid-2">
+      <label>
+        <span>Email Address *</span>
+        <input type="email" name="email" id="email" placeholder="your@email.com" required />
+      </label>
+
+      <label>
+        <span>Telephone Number *</span>
+        <input type="tel" name="phone" id="phoneNumber" placeholder="+233 000 000 000" required />
+      </label>
+    </div>
+
+    <label>
+      <span>Client Type *</span>
+      <select id="clientType" name="client_type" required>
+        <option value="">Select client type</option>
+        <option>Solo / Individual</option>
+        <option>Company / Business</option>
+        <option>Startup</option>
+        <option>Non-Profit Organization</option>
+      </select>
+    </label>
+
+    <label>
+      <span>Brand / Company Name *</span>
+      <input type="text" id="companyName" name="company" placeholder="Enter your brand/company name" required />
+    </label>
+
+    <label>
+      <span>Project Description</span>
+      <textarea
+      minlength="50"
+      id="project"
+        name="message"
+        placeholder="Tell us about your project requirements..."
+      ></textarea>
+    </label>
+
+    <button id="submitBtn" type="submit">
+      ⚡ Submit Booking Request
+    </button>
+  </form>
+</div>
+  
+
+  <section class="services">
+
+  <header class="services__header">
+    <h2>Our Core Services</h2>
+    <p>Comprehensive technology solutions tailored to your business needs</p>
+  </header>
+
+  <div class="services__cards">
+
+    <!-- Web Development -->
+    <article class="card card--cyan">
+      <span class="rating">⭐ 4.9 (127)</span>
+
+      <div class="icon icon--cyan">
+        <img src="./img/web.svg" alt="Web Development">
+      </div>
+
+      <h3>Web Development</h3>
+      <p class="desc">
+        Custom web applications and responsive websites built with cutting-edge technologies.
+      </p>
+
+      <div class="stats">
+        <div>
+          <strong>250+</strong>
+          <span>Projects Done</span>
+        </div>
+        <div>
+          <strong>2–8 weeks</strong>
+          <span>Avg. Timeline</span>
+        </div>
+      </div>
+
+      <h4>KEY FEATURES</h4>
+      <ul>
+        <li>Responsive Design & Mobile-First Approach</li>
+        <li>E-commerce Solutions & Payment Integration</li>
+        <li>Progressive Web Apps (PWA)</li>
+        <li>API Development & Integration</li>
+        <li class="more">+4 more features</li>
+      </ul>
+
+      <div class="tags">
+        <span>React</span>
+        <span>Next.js</span>
+        <span>TypeScript</span>
+        <span>Node.js</span>
+        <span>PostgreSQL</span>
+        <span class="plus">+3</span>
+      </div>
+
+      <div class="price cyan">Starting from $500</div>
+
+      <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+        <button class="btn primary cyan" id="bookBtn1">Book Now</button>
+      </div>
+    </article>
+
+    <!-- Cyber Security -->
+    <article class="card card--purple">
+      <span class="rating">⭐ 4.8 (89)</span>
+
+      <div class="icon icon--purple">
+        <img src="./img/shield-check-outline.svg" alt="Cyber Security">
+      </div>
+
+      <h3>Cyber Security</h3>
+      <p class="desc">
+        Comprehensive security solutions to protect your digital assets and infrastructure.
+      </p>
+
+      <div class="stats">
+        <div>
+          <strong>180+</strong>
+          <span>Projects Done</span>
+        </div>
+        <div>
+          <strong>1–4 weeks</strong>
+          <span>Avg. Timeline</span>
+        </div>
+      </div>
+
+      <h4>KEY FEATURES</h4>
+      <ul>
+        <li>Penetration Testing & Ethical Hacking</li>
+        <li>Vulnerability Assessment & Scanning</li>
+        <li>Security Audits & Compliance</li>
+        <li>Incident Response & Forensics</li>
+        <li class="more">+4 more features</li>
+      </ul>
+
+      <div class="tags">
+        <span>Kali Linux</span>
+        <span>Burp Suite</span>
+        <span>Wireshark</span>
+        <span>Metasploit</span>
+        <span>SIEM</span>
+        <span class="plus">+3</span>
+      </div>
+
+      <div class="price purple">Starting from $800</div>
+
+      <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+        <button class="btn primary purple" id="bookBtn2">Book Now</button>
+      </div>
+    </article>
+
+    <!-- Graphic Design -->
+    <article class="card card--purple">
+      <span class="rating">⭐ 4.8 (150)</span>
+
+      <div class="icon icon--purple">
+        <img src="./img/palette-outline.svg" alt="Graphic Design">
+      </div>
+
+      <h3>Graphic Design</h3>
+      <p class="desc">
+        Creative visual solutions that elevate your brand identity and captivate your audience.
+      </p>
+
+      <div class="stats">
+        <div>
+          <strong>320+</strong>
+          <span>Projects Done</span>
+        </div>
+        <div>
+          <strong>3-7 days </strong>
+          <span>Avg. Timeline</span>
+        </div>
+      </div>
+
+      <h4>KEY FEATURES</h4>
+      <ul>
+        <li>Logo Design & Brand Identity</li>
+        <li>Marketing Collateral & Print Design</li>
+        <li>Social Media Graphics & Templates</li>
+        <li>UI/UX Design & Prototyping</li>
+        <li class="more">+4 more features</li>
+      </ul>
+
+      <div class="tags">
+        <span>Adobe Photoshop</span>
+        <span>Adobe Illustrator</span>
+        <span>Figma</span>
+        <span>Canva Pro</span>
+        <span>InDesign</span>
+        <span class="plus">+3</span>
+      </div>
+
+      <div class="price purple">Starting from $800</div>
+
+      <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+        <button class="btn primary purple" id="bookBtn3">Book Now</button>
+      </div>
+    </article>
+
+    <!-- Networking Solutions -->
+<article class="card card--green">
+  <span class="rating">⭐ 4.7 (64)</span>
+
+  <div class="icon icon--green">
+    <img src="./img/network-pos.svg" alt="Networking Solutions">
+  </div>
+
+  <h3>Networking Solutions</h3>
+  <p class="desc">
+    Enterprise networking solutions for complex infrastructure requirements.
+  </p>
+
+  <div class="stats">
+    <div>
+      <strong>145+</strong>
+      <span>Projects Done</span>
+    </div>
+    <div>
+      <strong>1–6 weeks</strong>
+      <span>Avg. Timeline</span>
+    </div>
+  </div>
+
+  <h4>KEY FEATURES</h4>
+  <ul>
+    <li>Network Architecture & Design</li>
+    <li>Infrastructure Setup & Configuration</li>
+    <li>VPN & Secure Remote Access</li>
+    <li>Firewall Configuration & Management</li>
+    <li class="more">+4 more features</li>
+  </ul>
+
+  <div class="tags">
+    <span>Cisco</span>
+    <span>AWS</span>
+    <span>Azure</span>
+    <span>VMware</span>
+    <span>Docker</span>
+    <span class="plus">+3</span>
+  </div>
+
+  <div class="price green">Starting from $600</div>
+
+  <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+    <button class="btn primary green" id="bookBtn4">Book Now</button>
+  </div>
+</article>
+
+<!-- Database Solutions -->
+<article class="card card--blue">
+  <span class="rating">⭐ 4.9 (73)</span>
+
+  <div class="icon icon--blue">
+    <img src="./img/tray-full.svg" alt="Database Solutions">
+  </div>
+
+  <h3>Database Solutions</h3>
+  <p class="desc">
+    Database design, optimization, and management for peak performance.
+  </p>
+
+  <div class="stats">
+    <div>
+      <strong>195+</strong>
+      <span>Projects Done</span>
+    </div>
+    <div>
+      <strong>1–3 weeks</strong>
+      <span>Avg. Timeline</span>
+    </div>
+  </div>
+
+  <h4>KEY FEATURES</h4>
+  <ul>
+    <li>Database Architecture & Design</li>
+    <li>Performance Tuning & Optimization</li>
+    <li>Data Migration & ETL</li>
+    <li>Backup & Disaster Recovery</li>
+    <li class="more">+4 more features</li>
+  </ul>
+
+  <div class="tags">
+    <span>PostgreSQL</span>
+    <span>MySQL</span>
+    <span>MongoDB</span>
+    <span>Redis</span>
+    <span>Elasticsearch</span>
+    <span class="plus">+3</span>
+  </div>
+
+  <div class="price blue">Starting from $450</div>
+
+  <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+    <button class="btn primary blue" id="bookBtn5">Book Now</button>
+  </div>
+</article>
+
+<!-- Photography & Photo Editing -->
+<article class="card card--purple">
+  <span class="rating">⭐ 4.9 (93)</span>
+
+  <div class="icon icon--blue">
+    <img src="./img/camera.svg" alt="Database Solutions">
+  </div>
+
+  <h3>Photography & Photo Editing</h3>
+  <p class="desc">
+Professional photography and expert photo editing to bring your vision to life.
+  </p>
+
+  <div class="stats">
+    <div>
+      <strong>275+</strong>
+      <span>Projects Done</span>
+    </div>
+    <div>
+      <strong>1–5 days</strong>
+      <span>Avg. Timeline</span>
+    </div>
+  </div>
+
+  <h4>KEY FEATURES</h4>
+  <ul>
+    <li>Product Photography</li>
+    <li>Corporate & Portrait Photography</li>
+    <li>Event Photography & Coverage</li>
+    <li>Photo Retouching & Enhancement</li>
+    <li class="more">+4 more features</li>
+  </ul>
+
+  <div class="tags">
+    <span>Adobe Lightroom</span>
+    <span>Adobe Photoshop</span>
+    <span>Capture One</span>
+    <span>DxO PhotoLab</span>
+    <span class="plus">+3</span>
+  </div>
+
+      <div class="price purple">Starting from $800</div>
+
+      <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+        <button class="btn primary purple" id="bookBtn6">Book Now</button>
+      </div>
+</article>
+
+
+<!-- Video & Video Editing -->
+<article class="card card--blue">
+  <span class="rating">⭐ 4.6 (130)</span>
+
+  <div class="icon icon--blue">
+    <img src="./img/video-4k-box.svg" alt="Database Solutions">
+  </div>
+
+  <h3>Video & Video Editing</h3>
+  <p class="desc">
+Professional video production and editing services that tell your story compellingly.
+  </p>
+
+  <div class="stats">
+    <div>
+      <strong>210+</strong>
+      <span>Projects Done</span>
+    </div>
+    <div>
+      <strong>3-10 days</strong>
+      <span>Avg. Timeline</span>
+    </div>
+  </div>
+
+  <h4>KEY FEATURES</h4>
+  <ul>
+    <li>Corporate Video Production</li>
+    <li>Social Media Video Content</li>
+    <li>YouTube Video Editing</li>
+    <li>Commercial & Ad Production</li>
+    <li class="more">+4 more features</li>
+  </ul>
+
+  <div class="tags">
+    <span>Adobe Premiere Pro</span>
+    <span>DaVinci Resolve</span>
+    <span>Final Cut Pro</span>
+    <span>Adobe Audition</span>
+    <span>Cinema 4D</span>
+    <span class="plus">+3</span>
+  </div>
+
+  <div class="price blue">Starting from $450</div>
+
+  <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+    <button class="btn primary blue" id="bookBtn7">Book Now</button>
+  </div>
+</article>
+
+    <!--After Effects & Animations -->
+<article class="card card--green">
+  <span class="rating">⭐ 4.7 (64)</span>
+
+  <div class="icon icon--green">
+    <img src="./img/movie-edit-outline.svg" alt="After Effects & Animations">
+  </div>
+
+  <h3>After Effects & Animations</h3>
+  <p class="desc">
+Stunning motion graphics and animations that bring your content to life.
+  </p>
+
+  <div class="stats">
+    <div>
+      <strong>165+</strong>
+      <span>Projects Done</span>
+    </div>
+    <div>
+      <strong>5-14 days</strong>
+      <span>Avg. Timeline</span>
+    </div>
+  </div>
+
+  <h4>KEY FEATURES</h4>
+  <ul>
+    <li>Motion Graphics Design</li>
+    <li>2D & 3D Animation</li>
+    <li>Logo Animation & Intros</li>
+    <li>Explainer Video Animation</li>
+    <li class="more">+4 more features</li>
+  </ul>
+
+  <div class="tags">
+    <span>Adobe After Effects</span>
+    <span>Cinema 4D</span>
+    <span>Blender</span>
+    <span>Lottie</span>
+    <span>Adobe Animate</span>
+    <span class="plus">+3</span>
+  </div>
+
+  <div class="price green">Starting from $600</div>
+
+  <div class="actions">
+        <button class="btn ghost"><a href="contact.html">Learn More</a></button>
+    <button class="btn primary green" id="bookBtn8">Book Now</button>
+  </div>
+</article>
+
+  </div>
+</section>
+<section class="why">
+
+  <header class="why__header">
+    <h2>Why Choose Us</h2>
+    <p>What sets us apart from the competition</p>
+  </header>
+
+  <div class="why__grid">
+
+    <article class="why-card">
+      <div class="why-icon">
+        <img src="./img/check-circle-outline.svg" alt="Result Driven">
+      </div>
+      <h3>Result-Driven Approach</h3>
+      <p>
+        We focus on delivering measurable outcomes that impact your bottom line.
+      </p>
+    </article>
+
+    <article class="why-card">
+      <div class="why-icon">
+        <img src="./img/headphones.svg" alt="Dedicated Support">
+      </div>
+      <h3>Dedicated Support</h3>
+      <p>
+        Round-the-clock support with rapid response times for critical issues.
+      </p>
+    </article>
+
+    <article class="why-card">
+      <div class="why-icon">
+        <img src="./img/finance.svg" alt="Scalable Solutions">
+      </div>
+      <h3>Scalable Solutions</h3>
+      <p>
+        Future-proof technology that grows with your business needs.
+      </p>
+    </article>
+
+    <article class="why-card">
+      <div class="why-icon">
+        <img src="./img/seal-variant.svg" alt="Industry Expertise">
+      </div>
+      <h3>Industry Expertise</h3>
+      <p>
+        Certified professionals with deep domain knowledge and experience.
+      </p>
+    </article>
+
+  </div>
+</section>
+    <section class="stats">
+  <div class="stats__grid">
+
+    <div class="stats__item">
+      <div class="stats__icon">
+        <img src="./img/account-multiple-outline.svg" alt="">
+      </div>
+      <h3>500+</h3>
+      <p>Happy Clients</p>
+    </div>
+
+    <div class="stats__item">
+      <div class="stats__icon">
+        <img src="./img/rocket-launch.svg" alt="">
+      </div>
+      <h3>770+</h3>
+      <p>Projects Delivered</p>
+    </div>
+
+    <div class="stats__item">
+      <div class="stats__icon">
+        <img src="./img/clock.svg" alt="">
+      </div>
+      <h3>24/7</h3>
+      <p>Support Available</p>
+    </div>
+
+    <div class="stats__item">
+      <div class="stats__icon">
+        <img src="./img/seal-variant.svg" alt="">
+      </div>
+      <h3>99%</h3>
+      <p>Client Satisfaction</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="process">
+
+  <header class="process__header">
+    <h2>Our Work Process</h2>
+    <p>A streamlined approach to delivering exceptional results</p>
+  </header>
+
+  <div class="process__timeline">
+
+    <!-- Step 01 -->
+    <article class="process__step">
+      <div class="step__number">01</div>
+      <span class="step__line"></span>
+
+      <div class="step__icon">
+        <img src="./img/check-circle-outline.svg" alt="Discovery">
+      </div>
+
+      <h3>Discovery</h3>
+      <p>
+        Understanding your needs, goals, and challenges through in-depth consultation
+      </p>
+    </article>
+
+    <!-- Step 02 -->
+    <article class="process__step">
+      <div class="step__number">02</div>
+      <span class="step__line"></span>
+
+      <div class="step__icon">
+        <img src="./img/finance.svg" alt="Strategy">
+      </div>
+
+      <h3>Strategy</h3>
+      <p>
+        Creating a detailed roadmap with clear milestones and deliverables
+      </p>
+    </article>
+
+    <!-- Step 03 -->
+    <article class="process__step">
+      <div class="step__number">03</div>
+      <span class="step__line"></span>
+
+      <div class="step__icon">
+        <img src="./img/rocket-launch.svg" alt="Execution">
+      </div>
+
+      <h3>Execution</h3>
+      <p>
+        Agile development with regular updates and quality assurance
+      </p>
+    </article>
+
+    <!-- Step 04 -->
+    <article class="process__step">
+      <div class="step__number">04</div>
+
+      <div class="step__icon">
+        <img src="./img/headphones.svg" alt="Support">
+      </div>
+
+      <h3>Support</h3>
+      <p>
+        Ongoing maintenance, optimization, and dedicated support
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section class="cta">
+
+  <div class="cta__card">
+
+    <div class="cta__content">
+      <h2>Ready to Start Your Project?</h2>
+
+      <p class="cta__desc">
+        Let’s discuss how we can help transform your ideas into reality.
+        Get a free consultation and project estimate today.
+      </p>
+
+      <ul class="cta__list">
+        <li>Free initial consultation</li>
+        <li>No commitment required</li>
+        <li>Response within 24 hours</li>
+        <li>Transparent pricing</li>
+      </ul>
+    </div>
+
+    <div class="cta__actions">
+      <button class="cta__btn cta__btn--primary" id="bookBtn9">
+        ⚡ Book Service Now→
+      </button>
+
+      <button class="cta__btn cta__btn--secondary">
+       <a href="contact.html">📞 Schedule a Call</a> 
+      </button>
+
+      <p class="cta__note">
+        No spam. No pressure. Just clear answers and expert guidance.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-top">
+
+
+      <div class="footer-brand">
+<div class="footer-logo">
+  <div class="footer-logo-icon">
+    <img src="./img/package-variant-closed-plus.svg" alt="Info Box Logo" />
+  </div>
+  <span>Info Box <strong>Solution</strong></span>
+</div>
+        <p>
+          Empowering the next generation of tech professionals with free,
+          high-quality IT education. Learn cyber security, data science,
+          web development, and more.
+        </p>
+      </div>
+
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="information.html">Information</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>Our Courses</h4>
+        <a href="index.html#courses">Cyber Security</a>
+        <a href="index.html#courses">Data Science</a>
+        <a href="index.html#courses">Web Development</a>
+        <a href="index.html#courses">Tech Skills</a>
+      </div>
+
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Info Box Solution. All rights reserved.</span>
+      <span>
+        Made with <span class="heart">❤</span> for the tech community
+      </span>
+    </div>
+
+  </div>
+</footer>
+</body>
+</html>
