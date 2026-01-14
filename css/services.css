@@ -724,7 +724,7 @@ aside > a:not(:last-child)::after{
 .booking-form {
   position: relative;
   width: 100%;
-  max-width: 46rem;
+  max-width: 60rem;
   padding: 3.2rem;
   border-radius: 1.8rem;
   background: linear-gradient(

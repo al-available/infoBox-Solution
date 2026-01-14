@@ -194,6 +194,7 @@
 
   .booking-form {
     padding: 2rem;
+    width: 30rem;
     border-radius: 1.4rem;
   }
 
@@ -215,9 +216,12 @@
   }
   .form-container {
   padding-top: 10rem ;
+  overflow-x: visible;
+
 }
     .booking-form {
-    padding: 1.6rem;
+    width: 30rem;
+
   }
 
   button[type="submit"] {
