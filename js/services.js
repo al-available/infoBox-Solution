@@ -1,3 +1,27 @@
+const menuClose = document.getElementById('menuClose');
+const menuOpen = document.getElementById('menuOpen');
+const aside = document.querySelector('aside'); 
+
+function toggleMenu() {
+  if (menuOpen.style.display === 'none' || menuOpen.style.display === '') {
+    menuOpen.style.display = 'block';
+    menuClose.style.display = 'none';
+    aside.classList.add('active');
+  } else {
+    menuOpen.style.display = 'none';
+    menuClose.style.display = 'block';
+    aside.classList.remove('active');
+  }
+}
+
+menuClose.addEventListener('click', toggleMenu);
+menuOpen.addEventListener('click', toggleMenu);
+
+
+
+
+
+
 const closeBtn =document.getElementById('closeBtn')
 const bookingForm= document.querySelector('.form-container')
 const selectButtons = [
