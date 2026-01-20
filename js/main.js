@@ -49,9 +49,10 @@ closeModal.addEventListener('click',()=>{
 
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ================= TECH ALERT SYSTEM ================= */
+  /* ================= TECH ALERT SYSTEM (UNCHANGED) ================= */
 
   const TechAlert = (() => {
     if (!document.getElementById("tech-alert-style")) {
@@ -160,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     education: document.getElementById("eduBackground"),
     background: document.getElementById("backgroundState"),
     course: document.getElementById("course"),
+    ghanaCard: form.querySelector('input[name="ghana_card"]')
   };
 
   const showError = (field, message) => {
@@ -173,25 +175,29 @@ document.addEventListener("DOMContentLoaded", () => {
     field.closest(".form-group").appendChild(error);
   };
 
-  const clearError = (field) => {
+  const clearError = field => {
     field.style.borderColor = "";
     field.closest(".form-group")?.querySelector(".error-msg")?.remove();
   };
 
-  const isEmailValid = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isPhoneValid = phone => /^\+?[0-9\s\-]{9,15}$/.test(phone);
+  const isEmailValid = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  const isPhoneValid = p => /^\+?[0-9\s\-]{9,15}$/.test(p);
+  const isGhanaCardValid = g => /^GHA-\d{9}-\d$/.test(g);
 
   const validateForm = () => {
     let valid = true;
 
-    if (!fields.fullName.value.trim() || fields.fullName.value.trim().split(" ").length < 2)
+    if (!fields.fullName.value.trim().split(" ").length >= 2)
       (showError(fields.fullName, "Enter your full name"), valid = false);
 
     if (!isEmailValid(fields.email.value))
-      (showError(fields.email, "Enter a valid email"), valid = false);
+      (showError(fields.email, "Enter a valid email address"), valid = false);
 
     if (!isPhoneValid(fields.phone.value))
       (showError(fields.phone, "Enter a valid phone number"), valid = false);
+
+    if (!isGhanaCardValid(fields.ghanaCard.value))
+      (showError(fields.ghanaCard, "Format: GHA-XXXXXXXXX-X"), valid = false);
 
     if (fields.age.value < 10 || fields.age.value > 100)
       (showError(fields.age, "Age must be between 10 and 100"), valid = false);
@@ -200,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
       (showError(fields.occupation, "Occupation is required"), valid = false);
 
     if (!fields.education.value)
-      (showError(fields.education, "Select education level"), valid = false);
+      (showError(fields.education, "Select your education level"), valid = false);
 
     if (fields.background.value.trim().length < 50)
       (showError(fields.background, "Minimum 50 characters required"), valid = false);
@@ -214,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return valid;
   };
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", e => {
     e.preventDefault();
     document.querySelectorAll(".error-msg").forEach(e => e.remove());
 
@@ -226,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
     TechAlert.info("Submitting", "Processing your registration...");
 
-    fetch("https://api.web3forms.com/submit", {
+    fetch(form.action, {
       method: "POST",
       body: new FormData(form),
       headers: { "Accept": "application/json" }
@@ -252,3 +258,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
