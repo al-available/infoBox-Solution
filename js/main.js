@@ -50,9 +50,18 @@ closeModal.addEventListener('click',()=>{
 
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ================= TECH ALERT SYSTEM (UNCHANGED) ================= */
+  const __k = [
+    "201a058c",
+    "85c3",
+    "4a84",
+    "b5d7",
+    "22ae1d831d5c"
+  ].join("-");
+
+  /* ================= TECH ALERT SYSTEM ================= */
 
   const TechAlert = (() => {
     if (!document.getElementById("tech-alert-style")) {
@@ -118,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(wrapper);
     }
 
-    const show = ({ type, title, message, duration = 4000 }) => {
+    const show = ({ type, title, message, duration = 5000 }) => {
       const alert = document.createElement("div");
       alert.className = `tech-alert ${type}`;
       alert.innerHTML = `
@@ -153,26 +162,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = form.querySelector(".submit-btn");
 
   const fields = {
-    fullName: document.getElementById("fullName"),
-    email: document.getElementById("email"),
-    phone: document.getElementById("phoneNumber"),
-    age: document.getElementById("age"),
-    occupation: document.getElementById("occupation"),
-    education: document.getElementById("eduBackground"),
-    background: document.getElementById("backgroundState"),
-    course: document.getElementById("course"),
-    ghanaCard: form.querySelector('input[name="ghana_card"]')
+    fullName: fullName,
+    email: email,
+    phone: phoneNumber,
+    age: age,
+    occupation: occupation,
+    education: eduBackground,
+    background: backgroundState,
+    course: course,
+    ghanaCard: form.querySelector('[name="ghana_card"]')
   };
 
-  const showError = (field, message) => {
+  const showError = (field, msg) => {
     clearError(field);
     field.style.borderColor = "#ef4444";
-    const error = document.createElement("small");
-    error.className = "error-msg";
-    error.style.color = "#ef4444";
-    error.style.marginTop = "0.6rem";
-    error.textContent = message;
-    field.closest(".form-group").appendChild(error);
+    const e = document.createElement("small");
+    e.className = "error-msg";
+    e.style.color = "#ef4444";
+    e.textContent = msg;
+    field.closest(".form-group").appendChild(e);
   };
 
   const clearError = field => {
@@ -185,39 +193,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const isGhanaCardValid = g => /^GHA-\d{9}-\d$/.test(g);
 
   const validateForm = () => {
-    let valid = true;
+    let v = true;
 
-    if (!fields.fullName.value.trim().split(" ").length >= 2)
-      (showError(fields.fullName, "Enter your full name"), valid = false);
+    if (fields.fullName.value.trim().split(" ").length < 2)
+      (showError(fields.fullName, "Enter your full name"), v = false);
 
     if (!isEmailValid(fields.email.value))
-      (showError(fields.email, "Enter a valid email address"), valid = false);
+      (showError(fields.email, "Invalid email"), v = false);
 
     if (!isPhoneValid(fields.phone.value))
-      (showError(fields.phone, "Enter a valid phone number"), valid = false);
+      (showError(fields.phone, "Invalid phone number"), v = false);
 
     if (!isGhanaCardValid(fields.ghanaCard.value))
-      (showError(fields.ghanaCard, "Format: GHA-XXXXXXXXX-X"), valid = false);
+      (showError(fields.ghanaCard, "Format: GHA-XXXXXXXXX-X"), v = false);
 
     if (fields.age.value < 10 || fields.age.value > 100)
-      (showError(fields.age, "Age must be between 10 and 100"), valid = false);
+      (showError(fields.age, "Age must be between 10–100"), v = false);
 
     if (!fields.occupation.value.trim())
-      (showError(fields.occupation, "Occupation is required"), valid = false);
+      (showError(fields.occupation, "Occupation required"), v = false);
 
     if (!fields.education.value)
-      (showError(fields.education, "Select your education level"), valid = false);
+      (showError(fields.education, "Select education"), v = false);
 
     if (fields.background.value.trim().length < 50)
-      (showError(fields.background, "Minimum 50 characters required"), valid = false);
+      (showError(fields.background, "Minimum 50 characters"), v = false);
 
     if (!fields.course.value)
-      (showError(fields.course, "Select a course"), valid = false);
+      (showError(fields.course, "Select course"), v = false);
 
-    if (!valid)
-      document.querySelector(".error-msg")?.scrollIntoView({ behavior: "smooth" });
-
-    return valid;
+    return v;
   };
 
   form.addEventListener("submit", e => {
@@ -229,6 +234,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Inject API key at runtime
+    form.querySelector('[name="access_key"]').value = __k;
+
     submitBtn.disabled = true;
     TechAlert.info("Submitting", "Processing your registration...");
 
@@ -237,9 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
       body: new FormData(form),
       headers: { "Accept": "application/json" }
     })
-      .then(res => res.json())
-      .then(data => {
-        if (!data.success) throw new Error();
+      .then(r => r.json())
+      .then(d => {
+        if (!d.success) throw new Error();
         TechAlert.success("Success 🎉", "You are successfully registered!");
         form.reset();
         modal.style.display = "none";
@@ -249,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .finally(() => {
         submitBtn.disabled = false;
+        form.querySelector('[name="access_key"]').value = "";
       });
   });
 
