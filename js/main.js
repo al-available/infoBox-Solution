@@ -49,25 +49,29 @@ closeModal.addEventListener('click',()=>{
 
 
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  const __k = [
-    "201a058c",
-    "85c3",
-    "4a84",
-    "b5d7",
-    "22ae1d831d5c"
+  /* ================= VFS KEY (runtime only) ================= */
+  const WEB3FORMS_ACCESS_KEY = [
+    "2f11c8a8",
+    "ed81",
+    "475f",
+    "9755",
+    "6cb687139c00"
   ].join("-");
 
-  /* ================= TECH ALERT SYSTEM ================= */
+  const RATE_LIMIT_KEY = "vfs_enroll_last_submit";
+  const RATE_LIMIT_TIME = 60_000; // 60 seconds
 
+  const sanitize = str =>
+    str.replace(/[<>\/\\{}$;]/g, "").trim();
+
+  /* ================= TECH ALERT SYSTEM ================= */
   const TechAlert = (() => {
     if (!document.getElementById("tech-alert-style")) {
-      const style = document.createElement("style");
-      style.id = "tech-alert-style";
-      style.innerHTML = `
+      const styleTag = document.createElement("style");
+      styleTag.id = "tech-alert-style";
+      styleTag.innerHTML = `
         .tech-alert-wrapper {
           position: fixed;
           top: 2rem;
@@ -94,21 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .tech-alert.success { border-color: rgba(34,197,94,.6); }
         .tech-alert.error { border-color: rgba(239,68,68,.6); }
         .tech-alert.info { border-color: rgba(56,189,248,.6); }
-        .tech-alert h4 {
-          margin: 0;
-          font-size: 1.4rem;
-          font-weight: 600;
-        }
-        .tech-alert p {
-          margin: .4rem 0 0;
-          font-size: 1.3rem;
-          color: #cbd5f5;
-        }
-        .tech-alert-close {
-          margin-left: auto;
-          cursor: pointer;
-          color: #94a3b8;
-        }
+        .tech-alert h4 { margin: 0; font-size: 1.4rem; font-weight: 600; }
+        .tech-alert p { margin: .4rem 0 0; font-size: 1.3rem; color: #cbd5f5; }
+        .tech-alert-close { margin-left: auto; cursor: pointer; color: #94a3b8; }
         @keyframes slideIn {
           from { opacity: 0; transform: translateX(1.6rem); }
           to { opacity: 1; transform: translateX(0); }
@@ -117,153 +109,217 @@ document.addEventListener("DOMContentLoaded", () => {
           to { opacity: 0; transform: translateX(1.6rem); }
         }
       `;
-      document.head.appendChild(style);
+      document.head.appendChild(styleTag);
     }
 
-    let wrapper = document.querySelector(".tech-alert-wrapper");
-    if (!wrapper) {
-      wrapper = document.createElement("div");
-      wrapper.className = "tech-alert-wrapper";
-      document.body.appendChild(wrapper);
+    let alertWrapper = document.querySelector(".tech-alert-wrapper");
+    if (!alertWrapper) {
+      alertWrapper = document.createElement("div");
+      alertWrapper.className = "tech-alert-wrapper";
+      document.body.appendChild(alertWrapper);
     }
 
-    const show = ({ type, title, message, duration = 5000 }) => {
-      const alert = document.createElement("div");
-      alert.className = `tech-alert ${type}`;
-      alert.innerHTML = `
+    const showAlert = ({ type, title, message, duration = 4000 }) => {
+      const alertElement = document.createElement("div");
+      alertElement.className = `tech-alert ${type}`;
+      alertElement.innerHTML = `
         <div>
           <h4>${title}</h4>
           <p>${message}</p>
         </div>
         <div class="tech-alert-close">✕</div>
       `;
-      wrapper.appendChild(alert);
+      alertWrapper.appendChild(alertElement);
 
-      const remove = () => {
-        alert.style.animation = "slideOut .3s ease forwards";
-        setTimeout(() => alert.remove(), 300);
+      const removeAlert = () => {
+        alertElement.style.animation = "slideOut .3s ease forwards";
+        setTimeout(() => alertElement.remove(), 300);
       };
 
-      alert.querySelector(".tech-alert-close").onclick = remove;
-      setTimeout(remove, duration);
+      alertElement.querySelector(".tech-alert-close").onclick = removeAlert;
+      setTimeout(removeAlert, duration);
     };
 
     return {
-      success: (t, m, d) => show({ type: "success", title: t, message: m, duration: d }),
-      error: (t, m, d) => show({ type: "error", title: t, message: m, duration: d }),
-      info: (t, m, d) => show({ type: "info", title: t, message: m, duration: d })
+      success: (title, message) => showAlert({ type: "success", title, message }),
+      error: (title, message) => showAlert({ type: "error", title, message }),
+      info: (title, message) => showAlert({ type: "info", title, message }),
     };
   })();
 
   /* ================= FORM LOGIC ================= */
+  const enrollmentForm = document.querySelector(".enroll-modal");
+  const modalOverlay = document.getElementById("modal");
+  const submitButton = enrollmentForm.querySelector(".submit-btn");
+  const closeButton = document.getElementById("closeModal");
 
-  const form = document.querySelector(".enroll-modal");
-  const modal = document.getElementById("modal");
-  const submitBtn = form.querySelector(".submit-btn");
-
-  const fields = {
-    fullName: fullName,
-    email: email,
-    phone: phoneNumber,
-    age: age,
-    occupation: occupation,
-    education: eduBackground,
-    background: backgroundState,
-    course: course,
-    ghanaCard: form.querySelector('[name="ghana_card"]')
+  const formFields = {
+    fullName: document.getElementById("fullName"),
+    email: document.getElementById("email"),
+    phone: document.getElementById("phoneNumber"),
+    ghanaCard: document.getElementById("ghanaCard"),
+    age: document.getElementById("age"),
+    occupation: document.getElementById("occupation"),
+    education: document.getElementById("eduBackground"),
+    background: document.getElementById("backgroundState"),
+    course: document.getElementById("course")
   };
 
-  const showError = (field, msg) => {
-    clearError(field);
+  /* ================= HONEYPOT (bot trap) ================= */
+  const honeypot = enrollmentForm.querySelector('[name="company_website"]');
+
+  /* ================= HELPER FUNCTIONS ================= */
+  const showFieldError = (field, message) => {
+    clearFieldError(field);
     field.style.borderColor = "#ef4444";
-    const e = document.createElement("small");
-    e.className = "error-msg";
-    e.style.color = "#ef4444";
-    e.textContent = msg;
-    field.closest(".form-group").appendChild(e);
+
+    const errorElement = document.createElement("small");
+    errorElement.className = "error-msg";
+    errorElement.style.color = "#ef4444";
+    errorElement.style.marginTop = "0.5rem";
+    errorElement.textContent = message;
+
+    field.closest(".form-group").appendChild(errorElement);
   };
 
-  const clearError = field => {
+  const clearFieldError = field => {
     field.style.borderColor = "";
     field.closest(".form-group")?.querySelector(".error-msg")?.remove();
   };
 
-  const isEmailValid = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-  const isPhoneValid = p => /^\+?[0-9\s\-]{9,15}$/.test(p);
-  const isGhanaCardValid = g => /^GHA-\d{9}-\d$/.test(g);
+  const isEmailValid = value =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
+  const isPhoneValid = value =>
+    /^\+?[0-9\s\-]{9,15}$/.test(value);
+
+  const isGhanaCardValid = value =>
+    /^GHA-\d{9}-\d$/.test(value);
+
+  /* ================= VALIDATION ================= */
   const validateForm = () => {
-    let v = true;
+    let isFormValid = true;
 
-    if (fields.fullName.value.trim().split(" ").length < 2)
-      (showError(fields.fullName, "Enter your full name"), v = false);
+    if (formFields.fullName.value.trim().split(" ").length < 2) {
+      showFieldError(formFields.fullName, "Enter your full name");
+      isFormValid = false;
+    }
 
-    if (!isEmailValid(fields.email.value))
-      (showError(fields.email, "Invalid email"), v = false);
+    if (!isEmailValid(formFields.email.value)) {
+      showFieldError(formFields.email, "Enter a valid email address");
+      isFormValid = false;
+    }
 
-    if (!isPhoneValid(fields.phone.value))
-      (showError(fields.phone, "Invalid phone number"), v = false);
+    if (!isPhoneValid(formFields.phone.value)) {
+      showFieldError(formFields.phone, "Enter a valid phone number");
+      isFormValid = false;
+    }
 
-    if (!isGhanaCardValid(fields.ghanaCard.value))
-      (showError(fields.ghanaCard, "Format: GHA-XXXXXXXXX-X"), v = false);
+    if (!isGhanaCardValid(formFields.ghanaCard.value)) {
+      showFieldError(formFields.ghanaCard, "Format: GHA-XXXXXXXXX-X");
+      isFormValid = false;
+    }
 
-    if (fields.age.value < 10 || fields.age.value > 100)
-      (showError(fields.age, "Age must be between 10–100"), v = false);
+    if (formFields.age.value < 10 || formFields.age.value > 100) {
+      showFieldError(formFields.age, "Age must be between 10–100");
+      isFormValid = false;
+    }
 
-    if (!fields.occupation.value.trim())
-      (showError(fields.occupation, "Occupation required"), v = false);
+    if (!formFields.occupation.value.trim()) {
+      showFieldError(formFields.occupation, "Occupation is required");
+      isFormValid = false;
+    }
 
-    if (!fields.education.value)
-      (showError(fields.education, "Select education"), v = false);
+    if (!formFields.education.value) {
+      showFieldError(formFields.education, "Select education level");
+      isFormValid = false;
+    }
 
-    if (fields.background.value.trim().length < 50)
-      (showError(fields.background, "Minimum 50 characters"), v = false);
+    if (formFields.background.value.trim().length < 50) {
+      showFieldError(formFields.background, "Minimum 50 characters required");
+      isFormValid = false;
+    }
 
-    if (!fields.course.value)
-      (showError(fields.course, "Select course"), v = false);
+    if (!formFields.course.value) {
+      showFieldError(formFields.course, "Select a course");
+      isFormValid = false;
+    }
 
-    return v;
+    return isFormValid;
   };
 
-  form.addEventListener("submit", e => {
+  /* ================= SUBMIT ================= */
+  enrollmentForm.addEventListener("submit", e => {
     e.preventDefault();
-    document.querySelectorAll(".error-msg").forEach(e => e.remove());
+    document.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-    if (!validateForm()) {
-      TechAlert.error("Validation Error", "Please fix the highlighted fields.");
+    /* Bot trap */
+    if (honeypot?.value) return;
+
+    /* Rate limit */
+    const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+    if (lastSubmit && Date.now() - lastSubmit < RATE_LIMIT_TIME) {
+      TechAlert.error("Slow down ⏳", "Please wait before submitting again.");
       return;
     }
 
-    // Inject API key at runtime
-    form.querySelector('[name="access_key"]').value = __k;
+    if (!validateForm()) {
+      TechAlert.error("Validation Error", "Please fix highlighted fields.");
+      return;
+    }
 
-    submitBtn.disabled = true;
-    TechAlert.info("Submitting", "Processing your registration...");
+    /* Sanitize inputs */
+    Object.values(formFields).forEach(f => {
+      if (f.value) f.value = sanitize(f.value);
+    });
 
-    fetch(form.action, {
+    /* Inject key dynamically */
+    let keyField = enrollmentForm.querySelector('[name="access_key"]');
+    if (!keyField) {
+      keyField = document.createElement("input");
+      keyField.type = "hidden";
+      keyField.name = "access_key";
+      enrollmentForm.appendChild(keyField);
+    }
+    keyField.value = WEB3FORMS_ACCESS_KEY;
+
+    submitButton.disabled = true;
+    TechAlert.info("Submitting", "Sending your registration...");
+
+    fetch(enrollmentForm.action, {
       method: "POST",
-      body: new FormData(form),
-      headers: { "Accept": "application/json" }
+      body: new FormData(enrollmentForm),
+      headers: {
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      }
     })
-      .then(r => r.json())
-      .then(d => {
-        if (!d.success) throw new Error();
+      .then(res => res.json())
+      .then(data => {
+        if (!data.success) throw new Error();
         TechAlert.success("Success 🎉", "You are successfully registered!");
-        form.reset();
-        modal.style.display = "none";
+        localStorage.setItem(RATE_LIMIT_KEY, Date.now());
+        enrollmentForm.reset();
+        modalOverlay.style.display = "none";
       })
       .catch(() => {
         TechAlert.error("Submission Failed", "Please try again later.");
       })
       .finally(() => {
-        submitBtn.disabled = false;
-        form.querySelector('[name="access_key"]').value = "";
+        submitButton.disabled = false;
+        keyField.value = "";
       });
   });
 
-  Object.values(fields).forEach(f => {
-    f.addEventListener("input", () => clearError(f));
-    f.addEventListener("change", () => clearError(f));
+  /* ================= LIVE CLEAR ================= */
+  Object.values(formFields).forEach(f => {
+    f.addEventListener("input", () => clearFieldError(f));
+    f.addEventListener("change", () => clearFieldError(f));
+  });
+
+  /* ================= CLOSE MODAL ================= */
+  closeButton.addEventListener("click", () => {
+    modalOverlay.style.display = "none";
   });
 
 });

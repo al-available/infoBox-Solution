@@ -50,6 +50,22 @@ bookingForm.style.display='none'
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* ================= VFS KEY (runtime only) ================= */
+
+  const __k = [
+    "2f11c8a8",
+    "ed81",
+    "475f",
+    "9755",
+    "6cb687139c00"
+  ].join("-");
+
+  const RATE_LIMIT_KEY = "vfs_booking_last_submit";
+  const RATE_LIMIT_TIME = 60_000; // 60 seconds
+
+  const sanitize = str =>
+    str.replace(/[<>\/\\{}$;]/g, "").trim();
+
   /* ================= TECH ALERT SYSTEM ================= */
 
   const TechAlert = (() => {
@@ -83,21 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .tech-alert.success { border-color: rgba(34,197,94,.6); }
         .tech-alert.error { border-color: rgba(239,68,68,.6); }
         .tech-alert.info { border-color: rgba(56,189,248,.6); }
-        .tech-alert h4 {
-          margin: 0;
-          font-size: 1.4rem;
-          font-weight: 600;
-        }
-        .tech-alert p {
-          margin: .4rem 0 0;
-          font-size: 1.3rem;
-          color: #cbd5f5;
-        }
-        .tech-alert-close {
-          margin-left: auto;
-          cursor: pointer;
-          color: #94a3b8;
-        }
+        .tech-alert h4 { margin: 0; font-size: 1.4rem; font-weight: 600; }
+        .tech-alert p { margin: .4rem 0 0; font-size: 1.3rem; color: #cbd5f5; }
+        .tech-alert-close { margin-left: auto; cursor: pointer; color: #94a3b8; }
         @keyframes slideIn {
           from { opacity: 0; transform: translateX(1.6rem); }
           to { opacity: 1; transform: translateX(0); }
@@ -161,6 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
     project: document.getElementById("project"),
   };
 
+  /* ================= HONEYPOT ================= */
+
+  const honeypot = form.querySelector('[name="company_website"]');
+
   /* ================= HELPERS ================= */
 
   const showError = (field, message) => {
@@ -197,8 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
       valid = false;
     }
 
-    if (!fields.fullName.value.trim() ||
-        fields.fullName.value.trim().split(" ").length < 2) {
+    if (fields.fullName.value.trim().split(" ").length < 2) {
       showError(fields.fullName, "Enter your full name");
       valid = false;
     }
@@ -223,45 +230,66 @@ document.addEventListener("DOMContentLoaded", () => {
       valid = false;
     }
 
-    if (
-      fields.project.value.trim() &&
-      fields.project.value.trim().length < 50
-    ) {
+    if (fields.project.value && fields.project.value.trim().length < 50) {
       showError(fields.project, "Minimum 50 characters required");
       valid = false;
-    }
-
-    if (!valid) {
-      document.querySelector(".error-msg")
-        ?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     return valid;
   };
 
-  /* ================= SUBMIT ================= */
+  /* ================= SUBMIT (VFS) ================= */
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     document.querySelectorAll(".error-msg").forEach(e => e.remove());
+
+    /* Bot trap */
+    if (honeypot?.value) return;
+
+    /* Rate limit */
+    const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+    if (lastSubmit && Date.now() - lastSubmit < RATE_LIMIT_TIME) {
+      TechAlert.error("Slow down ⏳", "Please wait before submitting again.");
+      return;
+    }
 
     if (!validateForm()) {
       TechAlert.error("Validation Error", "Please fix the highlighted fields.");
       return;
     }
 
+    /* Sanitize */
+    Object.values(fields).forEach(f => {
+      if (f.value) f.value = sanitize(f.value);
+    });
+
+    /* Inject key */
+    let keyField = form.querySelector('[name="access_key"]');
+    if (!keyField) {
+      keyField = document.createElement("input");
+      keyField.type = "hidden";
+      keyField.name = "access_key";
+      form.appendChild(keyField);
+    }
+    keyField.value = __k;
+
     submitBtn.disabled = true;
-    TechAlert.info("Submitting", "Sending your booking request....");
+    TechAlert.info("Submitting", "Sending your booking request...");
 
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
       body: new FormData(form),
-      headers: { Accept: "application/json" }
+      headers: {
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      }
     })
       .then(res => res.json())
       .then(data => {
         if (!data.success) throw new Error();
         TechAlert.success("Success 🎉", "Booking request sent successfully!");
+        localStorage.setItem(RATE_LIMIT_KEY, Date.now());
         form.reset();
         container.style.display = "none";
       })
@@ -270,6 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .finally(() => {
         submitBtn.disabled = false;
+        keyField.value = "";
       });
   });
 
@@ -287,4 +316,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-
