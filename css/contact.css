@@ -575,6 +575,14 @@ aside > a:not(:last-child)::after{
 
 /* social end here  */
 
+/* ================= MAP ================= */
+.map iframe {
+  border-radius: 1rem;
+  width: 100%;
+  height: 45rem;
+  margin-top: 3rem;
+}
+
 
 /* cta starts here*/
 .cta {

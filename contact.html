@@ -1,205 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="./img/package-variant-closed-plus.svg"  sizes="70x70">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Ga+Maamli&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Ga+Maamli&family=Oswald:wght@200..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/contact.css">
-<link rel="stylesheet" href="./css/contactMedia.css">
-<script src="./js/main.js" defer></script>
-    <title>infoBox Solution ltd</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info Box Solution Ltd – IT Services, Courses & Contact</title>
+  <meta name="description" content="Info Box Solution Ltd provides web development, cyber security, data science, networking, and tech courses. Contact us via WhatsApp, email, or visit our Accra office.">
+  <meta name="keywords" content="Info Box Solution, IT Services Ghana, Web Development, Cyber Security, Data Science, Tech Courses, Contact">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://infoboxsolution.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Info Box Solution Ltd – IT Services, Courses & Contact">
+  <meta property="og:description" content="Info Box Solution Ltd provides web development, cyber security, data science, networking, and tech courses. Contact us via WhatsApp, email, or visit our Accra office.">
+  <meta property="og:url" content="https://infoboxsolution.com/">
+  <meta property="og:image" content="https://infoboxsolution.com/img/package-variant-closed-plus.svg">
+  <meta property="og:site_name" content="Info Box Solution Ltd">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Info Box Solution Ltd – IT Services, Courses & Contact">
+  <meta name="twitter:description" content="Info Box Solution Ltd provides web development, cyber security, data science, networking, and tech courses. Contact us via WhatsApp, email, or visit our Accra office.">
+  <meta name="twitter:image" content="https://infoboxsolution.com/img/package-variant-closed-plus.svg">
+  <meta name="twitter:site" content="@YourTwitterHandle">
+  <meta name="twitter:creator" content="@YourTwitterHandle">
+
+  <!-- Fonts & Styles -->
+  <link rel="icon" href="./img/package-variant-closed-plus.svg" sizes="70x70">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Ga+Maamli&family=Oswald:wght@200..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/contact.css">
+  <script src="./js/main.js" defer></script>
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Info Box Solution Ltd",
+    "image": "https://infoboxsolution.com/img/package-variant-closed-plus.svg",
+    "url": "https://infoboxsolution.com",
+    "telephone": "+233502514708",
+    "email": "infoboxsolution@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Accra",
+      "addressLocality": "Accra",
+      "addressRegion": "Greater Accra",
+      "postalCode": "GA",
+      "addressCountry": "GH"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/YourPage",
+      "https://www.instagram.com/YourPage",
+      "https://www.linkedin.com/company/YourPage",
+      "https://twitter.com/YourTwitterHandle",
+      "https://www.youtube.com/@YourChannel"
+    ]
+  }
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I contact Info Box Solution?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can contact us via WhatsApp, email, phone, or visit our Accra office."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What services does Info Box Solution offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer web development, cyber security, networking, database solutions, graphic design, photography, video editing, and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer online courses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we provide free IT education, including cyber security, data science, web development, and tech skills."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-        <header class="navbar">
+<header class="navbar">
   <div class="nav-container">
-
-<div class="logo">
-  <div class="logo-icon">
-    <img src="./img/package-variant-closed-plus.svg" alt="Info Box Logo" />
-  </div>
-  <span>Info Box <strong>Solution</strong></span>
-</div>
-
-
+    <div class="logo">
+      <div class="logo-icon">
+        <img src="./img/package-variant-closed-plus.svg" alt="Info Box Logo" />
+      </div>
+      <span>Info Box <strong>Solution</strong></span>
+    </div>
     <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="information.html" >Information</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html" class="active">Contact</a>
+      <a href="information.html">Information</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="contact.html">Contact</a>
     </nav>
-
-
-        <img id="menuClose" class="menuClose" src="./img/menu.png" alt="menu Bar">
-        <img id="menuOpen" class="navMenuOpen"src="./img/menu-open.png" alt="menu Bar">
-
+    <img id="menuClose" class="menuClose" src="./img/menu.png" alt="menu Bar">
+    <img id="menuOpen" class="navMenuOpen" src="./img/menu-open.png" alt="menu Bar">
   </div>
-          <aside>
-        <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="information.html"  >Information</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html" class="active">Contact</a>
-        </aside>
+  <aside>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="information.html">Information</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="contact.html">Contact</a>
+  </aside>
 </header>
-<section class="contact">
-  <div class="contact__header">
-    <span class="contact__badge">Get In Touch</span>
-    <h2 class="contact__title">
-      Connect <span>With Us</span>
-    </h2>
-    <p class="contact__text">
-      Reach out through any of our social media channels. We're always happy to help and answer
-      your questions about IT.
-    </p>
-  </div>
 
-  <div class="contact__cards">
-    <article class="contact__card">
-      <div class="contact__icon">
-        <img src="./img/email-edit-outline.svg" alt="Email">
-      </div>
-      <h3>Email</h3>
-      <p class="contact__main">infoboxsolution@gmail.com</p>
-      <span>Send us an email anytime</span>
-    </article>
-
-    <article class="contact__card">
-      <div class="contact__icon">
-        <img src="./img/phone.svg" alt="Phone">
-      </div>
-      <h3>Phone</h3>
-      <p class="contact__main">+1234 567 89</p>
-      <span>Mon–Fri, 9AM–6PM</span>
-    </article>
-
-    <article class="contact__card">
-      <div class="contact__icon">
-        <img src="./img/map-marker.svg" alt="Location">
-      </div>
-      <h3>Location</h3>
-      <p class="contact__main">Accra, Ghana</p>
-      <span>Operating globally online</span>
-    </article>
-  </div>
-</section>
 <main>
-    <section class="social">
-  <div class="social__header">
-    <h2>
-      Follow Us on <span>Social Media</span>
-    </h2>
-    <p>
-      Stay connected and never miss an update. Join our community on your favorite platform!
-    </p>
-  </div>
-
-  <div class="social__grid">
-
-    <a class="social__card whatsapp" href="#">
-      <img src="./img/whatsapp.svg" alt="WhatsApp">
-      <h3>WhatsApp</h3>
-      <span>Chat with us directly</span>
-    </a>
-
-    <a class="social__card telegram" href="#">
-      <img src="./img/send-circle-outline.svg" alt="Telegram">
-      <h3>Telegram</h3>
-      <span>Join our Telegram community</span>
-    </a>
-
-    <a class="social__card twitter" href="#">
-      <img src="./img/twitter.svg" alt="Twitter / X">
-      <h3>Twitter / X</h3>
-      <span>Follow us for updates</span>
-    </a>
-
-    <a class="social__card linkedin" href="#">
-      <img src="./img/linkedin.svg" alt="LinkedIn">
-      <h3>LinkedIn</h3>
-      <span>Connect professionally</span>
-    </a>
-
-    <a class="social__card instagram" href="#">
-      <img src="./img/instagram.svg" alt="Instagram">
-      <h3>Instagram</h3>
-      <span>See behind the scenes</span>
-    </a>
-
-    <a class="social__card facebook" href="#">
-      <img src="./img/facebook.svg" alt="Facebook">
-      <h3>Facebook</h3>
-      <span>Like our Facebook page</span>
-    </a>
-
-    <a class="social__card youtube" href="#">
-      <img src="./img/youtube.svg" alt="YouTube">
-      <h3>YouTube</h3>
-      <span>Watch our tutorials</span>
-    </a>
-
-    <a class="social__card tiktok" href="#">
-      <img src="./img/music-note.svg" alt="TikTok">
-      <h3>TikTok</h3>
-      <span>Quick tips and tricks</span>
-    </a>
-
-  </div>
-</section>
-
-<section class="cta">
-  <div class="cta__content">
-    <h2>
-      Ready to Start Your <span>Learning Journey?</span>
-    </h2>
-
-    <p>
-      Join our community of learners and start mastering tech skills today.
-      It's completely free!
-    </p>
-
-    <div class="cta__actions">
-      <a class="cta__btn cta__btn--primary" href="#">
-        <img src="./img/whatsapp.svg" alt="">
-        Message on WhatsApp
-      </a>
-
-      <a class="cta__btn cta__btn--outline" href="#">
-        <img src="./img/send-circle-outline.svg" alt="">
-        Join Telegram
-      </a>
+  <!-- Services Section
+  <section class="services">
+    <div class="services__header">
+      <h2>Our <span>IT Services & Courses</span></h2>
+      <p>Empowering learners and businesses with top-notch IT solutions and training programs.</p>
     </div>
-  </div>
-</section>
+    <div class="services__grid">
+      <article class="service-card">
+        <h3>Web Development</h3>
+        <p>Responsive websites, web apps, e-commerce, and custom solutions for businesses.</p>
+      </article>
+      <article class="service-card">
+        <h3>Cyber Security</h3>
+        <p>Protect your data, networks, and systems with professional cybersecurity services.</p>
+      </article>
+      <article class="service-card">
+        <h3>Data Science</h3>
+        <p>Learn analytics, machine learning, AI, and data-driven decision making.</p>
+      </article>
+      <article class="service-card">
+        <h3>Networking</h3>
+        <p>Setup, optimize, and maintain local and cloud networks for business efficiency.</p>
+      </article>
+      <article class="service-card">
+        <h3>Graphic Design & Media</h3>
+        <p>Creative design, photography, and video editing services for brands and projects.</p>
+      </article>
+      <article class="service-card">
+        <h3>IT Courses</h3>
+        <p>Free courses for cyber security, data science, web development, and tech skills.</p>
+      </article>
+    </div>
+  </section> -->
 
+  <!-- Contact Section -->
+  <section class="contact">
+    <div class="contact__header">
+      <span class="contact__badge">Get In Touch</span>
+      <h2 class="contact__title">Connect <span>With Us</span></h2>
+      <p>Reach out through any of our social media channels or directly via email and WhatsApp.</p>
+    </div>
+    <div class="contact__cards">
+      <article class="contact__card">
+        <div class="contact__icon"><img src="./img/email-edit-outline.svg" alt="Email"></div>
+        <h3>Email</h3>
+        <p class="contact__main">infoboxsolution@gmail.com</p>
+        <span>Send us an email anytime</span>
+      </article>
+      <article class="contact__card">
+        <div class="contact__icon"><img src="./img/phone.svg" alt="Phone"></div>
+        <h3>Phone</h3>
+        <p class="contact__main">+233502514708</p>
+        <span>Mon–Fri, 9AM–6PM</span>
+      </article>
+      <article class="contact__card">
+        <div class="contact__icon"><img src="./img/map-marker.svg" alt="Location"></div>
+        <h3>Location</h3>
+        <p class="contact__main">Accra, Ghana</p>
+        <span>Operating globally online</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section class="social">
+    <div class="social__header">
+      <h2>Follow Us on <span>Social Media</span></h2>
+      <p>Stay connected and never miss an update. Join our community on your favorite platform!</p>
+    </div>
+    <div class="social__grid">
+      <a class="social__card whatsapp" href="#"><img src="./img/whatsapp.svg" alt="WhatsApp"><h3>WhatsApp</h3><span>Chat with us directly</span></a>
+      <a class="social__card telegram" href="#"><img src="./img/send-circle-outline.svg" alt="Telegram"><h3>Telegram</h3><span>Join our Telegram community</span></a>
+      <a class="social__card twitter" href="#"><img src="./img/twitter.svg" alt="Twitter / X"><h3>Twitter / X</h3><span>Follow us for updates</span></a>
+      <a class="social__card linkedin" href="#"><img src="./img/linkedin.svg" alt="LinkedIn"><h3>LinkedIn</h3><span>Connect professionally</span></a>
+      <a class="social__card instagram" href="#"><img src="./img/instagram.svg" alt="Instagram"><h3>Instagram</h3><span>See behind the scenes</span></a>
+      <a class="social__card facebook" href="#"><img src="./img/facebook.svg" alt="Facebook"><h3>Facebook</h3><span>Like our Facebook page</span></a>
+      <a class="social__card youtube" href="#"><img src="./img/youtube.svg" alt="YouTube"><h3>YouTube</h3><span>Watch our tutorials</span></a>
+      <a class="social__card tiktok" href="#"><img src="./img/music-note.svg" alt="TikTok"><h3>TikTok</h3><span>Quick tips and tricks</span></a>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="cta__content">
+      <h2>Ready to Start Your <span>Learning Journey?</span></h2>
+      <p>Join our community of learners and start mastering tech skills today. It's completely free!</p>
+      <div class="cta__actions">
+        <a class="cta__btn cta__btn--primary" href="#"><img src="./img/whatsapp.svg" alt="">Message on WhatsApp</a>
+        <a class="cta__btn cta__btn--outline" href="#"><img src="./img/send-circle-outline.svg" alt="">Join Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Map -->
+  <section class="map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.000000!2d-0.000000!3d5.600000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1030000000000000%3A0x0000000000000000!2sAccra!5e0!3m2!1sen!2sgh!4v0000000000000"
+      width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </section>
 </main>
+
 <footer class="footer">
   <div class="footer-container">
-
     <div class="footer-top">
-
-
       <div class="footer-brand">
-<div class="footer-logo">
-  <div class="footer-logo-icon">
-    <img src="./img/package-variant-closed-plus.svg" alt="Info Box Logo" />
-  </div>
-  <span>Info Box <strong>Solution</strong></span>
-</div>
-        <p>
-          Empowering the next generation of tech professionals with free,
-          high-quality IT education. Learn cyber security, data science,
-          web development, and more.
-        </p>
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><img src="./img/package-variant-closed-plus.svg" alt="Info Box Logo" /></div>
+          <span>Info Box <strong>Solution</strong></span>
+        </div>
+        <p>Empowering the next generation of tech professionals with free, high-quality IT education. Learn cyber security, data science, web development, and more.</p>
       </div>
-
-
       <div class="footer-links">
         <h4>Quick Links</h4>
         <a href="index.html">Home</a>
@@ -207,7 +249,6 @@
         <a href="services.html">Services</a>
         <a href="information.html">Information</a>
       </div>
-
       <div class="footer-links">
         <h4>Our Courses</h4>
         <a href="index.html#courses">Cyber Security</a>
@@ -215,20 +256,13 @@
         <a href="index.html#courses">Web Development</a>
         <a href="index.html#courses">Tech Skills</a>
       </div>
-
     </div>
-
     <div class="footer-divider"></div>
-
     <div class="footer-bottom">
       <span>© 2026 Info Box Solution. All rights reserved.</span>
-      <span>
-        Made with <span class="heart">❤</span> for the tech community
-      </span>
+      <span>Made with <span class="heart">❤</span> for the tech community</span>
     </div>
-
   </div>
 </footer>
-
 </body>
 </html>
