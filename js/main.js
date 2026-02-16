@@ -47,6 +47,117 @@ closeModal.addEventListener('click',()=>{
   modalOverlay.style.display='none'
 })
 
+/* ================= TESTIMONIAL SYSTEM ================= */
+
+const testimonials = document.querySelectorAll(".testimonial");
+const dotsContainer = document.getElementById("testimonialDots");
+const slider = document.getElementById("testimonialSlider");
+
+let currentTestimonial = 0;
+let slideInterval;
+
+/* Create Dots */
+testimonials.forEach((_, index) => {
+  const dot = document.createElement("span");
+
+  if (index === 0) dot.classList.add("active");
+
+  dot.addEventListener("click", () => {
+    showTestimonial(index);
+    resetInterval();
+  });
+
+  dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll(".testimonial-dots span");
+
+/* Show */
+function showTestimonial(index) {
+
+  testimonials.forEach((item, i) => {
+    item.classList.toggle("active", i === index);
+    dots[i].classList.toggle("active", i === index);
+  });
+
+  currentTestimonial = index;
+}
+
+/* Auto Slide */
+function autoSlide() {
+
+  currentTestimonial++;
+
+  if (currentTestimonial >= testimonials.length) {
+    currentTestimonial = 0;
+  }
+
+  showTestimonial(currentTestimonial);
+}
+
+/* Reset */
+function resetInterval() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(autoSlide, 5000);
+}
+
+/* Start */
+slideInterval = setInterval(autoSlide, 5000);
+
+/* ================= SWIPE ================= */
+
+let startX = 0;
+let endX = 0;
+
+slider.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+slider.addEventListener("touchend", e => {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+
+  const threshold = 50;
+
+  if (startX - endX > threshold) {
+    nextTestimonial();
+  }
+
+  if (endX - startX > threshold) {
+    prevTestimonial();
+  }
+}
+
+/* Next */
+function nextTestimonial() {
+
+  currentTestimonial++;
+
+  if (currentTestimonial >= testimonials.length) {
+    currentTestimonial = 0;
+  }
+
+  showTestimonial(currentTestimonial);
+  resetInterval();
+}
+
+/* Previous */
+function prevTestimonial() {
+
+  currentTestimonial--;
+
+  if (currentTestimonial < 0) {
+    currentTestimonial = testimonials.length - 1;
+  }
+
+  showTestimonial(currentTestimonial);
+  resetInterval();
+}
+
+
 
 
 

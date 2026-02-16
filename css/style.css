@@ -640,6 +640,7 @@ aside > a:not(:last-child)::after{
   width: 100%;
   max-width: 1000px;
   margin: auto;
+  margin-bottom: 2rem;
   background: #ffffff;
   padding: 5rem 4rem;
   border-radius: 2.5rem;
