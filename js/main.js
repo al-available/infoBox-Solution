@@ -49,6 +49,9 @@ closeModal.addEventListener('click',()=>{
 
 
 
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= VFS KEY ================= */
@@ -183,25 +186,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="community-links">
 
           <a href="https://wa.me/233501234567" target="_blank">
-            📱 WhatsApp Group
-          </a>
-
-          <a href="https://t.me/yourgroup" target="_blank">
-            💬 Telegram
-          </a>
-
-          <a href="https://discord.gg/yourserver" target="_blank">
-            🎮 Discord
-          </a>
-
-          <a href="https://facebook.com/groups/yourgroup" target="_blank">
-            📘 Facebook Group
+             WhatsApp Group
           </a>
 
         </div>
 
         <button id="closeCommunityPopup">Continue</button>
-
       </div>
     `;
 
@@ -293,6 +283,137 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.remove();
       });
   };
+/* ================= PREMIUM TELEGRAM POPUP ================= */
+const showPremiumPopup = () => {
+
+  document.getElementById("premium-popup")?.remove();
+
+  const overlay = document.createElement("div");
+  overlay.id = "premium-popup";
+
+  overlay.innerHTML = `
+    <div class="community-box">
+
+      <h2>Welcome to Premium!</h2>
+      <p>You selected Premium Group access.</p>
+
+      <div class="community-links">
+        <a href="https://t.me/yourpremiumchannel" target="_blank">
+          Join Premium Telegram Channel
+        </a>
+      </div>
+
+      <button id="closePremiumPopup">Continue</button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  /* ✅ Styling */
+  const style = document.createElement("style");
+
+  style.innerHTML = `
+
+#premium-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 2rem;
+}
+
+#premium-popup .community-box {
+  background: rgba(2, 6, 23, 0.95);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(18px);
+  border-radius: 2rem;
+  padding: 3.5rem 3rem;
+  width: 100%;
+  max-width: 46rem;
+  text-align: center;
+  animation: premiumFadeIn 0.35s ease;
+}
+
+/* Title */
+#premium-popup .community-box h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #38bdf8;
+}
+
+/* Description */
+#premium-popup .community-box p {
+  font-size: 1.45rem;
+  color: #cbd5f5;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* Telegram Link Button */
+#premium-popup .community-links a {
+        padding: 1rem;
+        border-radius: .8rem;
+        text-decoration: none;
+        background: #020617;
+        border: 1px solid #38bdf8;
+        color: #38bdf8;
+        font-size: 1.3rem;
+        transition: .2s;
+}
+
+#premium-popup .community-links a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.55);
+}
+
+/* Continue Button */
+#closePremiumPopup {
+  margin-top: 2.5rem;
+  padding: 1.1rem 2.8rem;
+  border: none;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+#closePremiumPopup:hover {
+  background: rgba(56, 189, 248, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes premiumFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+  `;
+
+  document.head.appendChild(style);
+
+  document
+    .getElementById("closePremiumPopup")
+    .addEventListener("click", () => {
+      overlay.remove();
+    });
+};
+
+
 
 
   /* ================= FORM SETUP ================= */
@@ -312,7 +433,8 @@ document.addEventListener("DOMContentLoaded", () => {
     occupation: document.getElementById("occupation"),
     education: document.getElementById("eduBackground"),
     background: document.getElementById("backgroundState"),
-    course: document.getElementById("course")
+    course: document.getElementById("course"),
+   premium: document.getElementById("premiumGroup") 
   };
 
 
@@ -495,14 +617,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.setItem(RATE_LIMIT_KEY, Date.now());
 
-        enrollmentForm.reset();
+const premiumChoice = formFields.premium.value;
 
-        modalOverlay.style.display = "none";
+enrollmentForm.reset();
 
+modalOverlay.style.display = "none";
 
-        setTimeout(() => {
-          showCommunityPopup();
-        }, 800);
+setTimeout(() => {
+
+  if (premiumChoice === "Yes") {
+    showPremiumPopup(); 
+  } else {
+    showCommunityPopup(); 
+  }
+
+}, 800);
+
 
       })
 

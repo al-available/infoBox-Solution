@@ -159,7 +159,7 @@ gtag('config', 'G-XXXXXXXXXX');
   <div class="logo-icon">
     <img src="./img/package-variant-closed-plus.svg" alt="Info Box Solution Free Tech Training Ghana Logo" />
   </div>
-  <span>Info Box <strong>Solution</strong></span>
+  <span>InfoBox <strong>Solution</strong></span>
 </div>
 
 <nav class="nav-links" id="navLinks" role="navigation">
@@ -214,6 +214,114 @@ gtag('config', 'G-XXXXXXXXXX');
     </div>
   </div>
 </section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" aria-label="Student Testimonials">
+  <div class="testimonials-container">
+
+    <header class="testimonials-header">
+      <h2> Join our <span>Premium Community </span></h2>
+      <p>Real success stories from our learning community</p>
+    </header>
+
+    <div class="testimonial-slider" id="testimonialSlider">
+
+      <!-- Slide 1 -->
+      <div class="testimonial active">
+        <img src="./img/img1.webp" alt="Student testimonial - John Mensah">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “InfoBox Solution transformed my career. I got my first internship
+          after completing Web Development.”
+        </p>
+
+        <h4>John Mensah</h4>
+        <span>Web Developer</span>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="testimonial">
+        <img src="./img/img 2.jpg" alt="Student testimonial - Ama Boateng">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “The mentorship and networking opportunities are unmatched.
+          I highly recommend this program.”
+        </p>
+
+        <h4>Ama Boateng</h4>
+        <span>Data Analyst</span>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="testimonial">
+        <img src="./img/img3.jpg" alt="Student testimonial - Samuel Owusu">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “The cyber security training helped me land my first tech job.”
+        </p>
+
+        <h4>Samuel Owusu</h4>
+        <span>Cyber Security Analyst</span>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="testimonial">
+        <img src="./img/img4.jpeg" alt="Student testimonial - Esther Asante">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “I gained confidence and real-world experience through projects.”
+        </p>
+
+        <h4>Esther Asante</h4>
+        <span>Frontend Developer</span>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="testimonial">
+        <img src="./img/img5.jpg" alt="Student testimonial - Michael Addo">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “Their AI training is beginner-friendly and very practical.”
+        </p>
+
+        <h4>Michael Addo</h4>
+        <span>AI Enthusiast</span>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="testimonial">
+        <img src="./img/img6.jpg" alt="Student testimonial - Linda Quaye">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “The community support helped me grow faster in tech.”
+        </p>
+
+        <h4>Linda Quaye</h4>
+        <span>UI/UX Designer</span>
+      </div>
+
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="testimonial-dots" id="testimonialDots"></div>
+
+  </div>
+</section>
+
+
+
 <section class="stats">
   <div class="stats-container">
 
@@ -243,6 +351,7 @@ gtag('config', 'G-XXXXXXXXXX');
 
   </div>
 </section>
+
 <section id="courses" class="courses">
   <div class="courses-container">
 
@@ -323,78 +432,37 @@ gtag('config', 'G-XXXXXXXXXX');
 
       <div class="form-group full">
         <label for="fullName">Full Name *</label>
-        <input
-          type="text"
-          name="full_name"
-          id="fullName"
-          autocomplete="name"
-          required
-        >
+        <input type="text" name="full_name" id="fullName" required>
       </div>
 
       <div class="form-group">
         <label for="email">Email Address *</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          autocomplete="email"
-          required
-        >
+        <input type="email" name="email" id="email" required>
       </div>
 
       <div class="form-group">
         <label for="phoneNumber">Phone Number *</label>
-        <input
-          type="tel"
-          name="phone"
-          id="phoneNumber"
-          autocomplete="tel"
-          required
-        >
+        <input type="tel" name="phone" id="phoneNumber" required>
       </div>
 
       <div class="form-group">
         <label for="ghanaCard">Ghana Card Number *</label>
-        <input
-          type="text"
-          name="ghana_card"
-          id="ghanaCard"
-          autocomplete="on"
-          required
-        >
+        <input type="text" name="ghana_card" id="ghanaCard" required>
       </div>
 
       <div class="form-group">
         <label for="age">Age *</label>
-        <input
-          type="number"
-          name="age"
-          id="age"
-          autocomplete="bday-year"
-          required
-        >
+        <input type="number" name="age" id="age" required>
       </div>
 
       <div class="form-group">
         <label for="occupation">Occupation *</label>
-        <input
-          type="text"
-          name="occupation"
-          id="occupation"
-          autocomplete="organization-title"
-          required
-        >
+        <input type="text" name="occupation" id="occupation" required>
       </div>
 
       <div class="form-group full">
         <label for="eduBackground">Current Educational Background *</label>
-        <select
-          name="education"
-          id="eduBackground"
-          autocomplete="education-level"
-          required
-        >
+        <select name="education" id="eduBackground" required>
           <option value="" disabled selected>--Select your education level--</option>
           <option>High School / SHS</option>
           <option>Diploma / HND</option>
@@ -407,23 +475,12 @@ gtag('config', 'G-XXXXXXXXXX');
 
       <div class="form-group full">
         <label for="backgroundState">Current IT Background *</label>
-        <textarea
-          name="IT_background"
-          id="backgroundState"
-          minlength="50"
-          autocomplete="off"
-          required
-        ></textarea>
+        <textarea name="IT_background" id="backgroundState" minlength="50" required></textarea>
       </div>
 
       <div class="form-group full">
         <label for="course">Course Interested In *</label>
-        <select
-          name="course"
-          id="course"
-          autocomplete="off"
-          required
-        >
+        <select name="course" id="course" required>
           <option value="" disabled selected>--Select the course--</option>
           <option>Cyber Security</option>
           <option>Data Science</option>
@@ -434,12 +491,30 @@ gtag('config', 'G-XXXXXXXXXX');
 
     </div>
 
+    <!-- Premium Group Option -->
+    <div class="form-group full">
+      <label for="premiumGroup">
+        Do you want to join our Premium Group? *
+      </label>
+
+      <select name="premium_group" id="premiumGroup" required>
+        <option value="" disabled selected>-- Select an option --</option>
+        <option value="Yes">Yes, I want to join the Premium Group 🚀</option>
+        <option value="No">No, I want only the free training for now</option>
+      </select>
+
+      <small class="premium-note">
+        Premium members get access to mentorship, networking events, exams, and exclusive opportunities.
+      </small>
+    </div>
+
     <button type="submit" class="submit-btn">
       Submit Registration →
     </button>
 
   </form>
 </div>
+
 
 
 
@@ -546,7 +621,7 @@ most in-demand tech skills. Claim your free seat today or upgrade to our Premium
   <div class="footer-logo-icon">
     <img src="./img/package-variant-closed-plus.svg" alt="Info Box Logo" />
   </div>
-  <span>Info Box <strong>Solution</strong></span>
+  <span>InfoBox <strong>Solution</strong></span>
 </div>
         <p>
           Empowering the next generation of tech professionals with Free Introductory Courses, 
