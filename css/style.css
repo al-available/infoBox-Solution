@@ -594,6 +594,138 @@ aside > a:not(:last-child)::after{
   letter-spacing: 0.04rem;
 }
 
+
+ /* ======== Testimonails ====== */
+.testimonials {
+  padding: 9rem 2rem;
+  background: #ecefec;
+  text-align: center;
+}
+
+.testimonials-container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* Header */
+.testimonials-header h2 {
+  font-size: 3.8rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  color: black;
+}
+
+.testimonials-header span {
+  color: #0066ff;
+}
+
+.testimonials-header p {
+  font-size: 2rem;
+  color: #444;
+  margin-bottom: 6rem;
+}
+
+/* Slider */
+.testimonial-slider {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+}
+
+/* Card */
+.testimonial {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  background: #ffffff;
+  padding: 5rem 4rem;
+  border-radius: 2.5rem;
+  box-shadow: 1px 4px 5px black;
+  animation: zoomFade 0.7s ease;
+}
+
+.testimonial.active {
+  display: flex;
+}
+
+/* Image */
+.testimonial img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #0066ff;
+  margin-bottom: 2rem;
+}
+
+/* Stars */
+.stars {
+  color: #ffb400;
+  font-size: 2.4rem;
+  letter-spacing: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+/* Text */
+.testimonial p {
+  font-size: 2rem;
+  line-height: 1.8;
+  color: #111;
+  margin-bottom: 2.5rem;
+  max-width: 800px;
+}
+
+/* Name */
+.testimonial h4 {
+  font-size: 2.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+/* Role */
+.testimonial span {
+  font-size: 1.6rem;
+  color: #555;
+}
+
+/* Dots */
+.testimonial-dots {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.testimonial-dots span {
+  width: 16px;
+  height: 16px;
+  background: #cbd6ea;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.testimonial-dots span.active {
+  background: #0066ff;
+  transform: scale(1.4);
+}
+
+/* Animation */
+@keyframes zoomFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
 /* ========== COURSES SECTION ========== */
 .courses {
   background:
@@ -815,6 +947,7 @@ aside > a:not(:last-child)::after{
 
 .form-group.full {
   grid-column: span 2;
+  margin-bottom: 3rem;
 }
 
 label {
@@ -1297,4 +1430,11 @@ textarea:focus {
 .error-msg {
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.premium-note {
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 1.3rem;
+  color: #555;
 }
