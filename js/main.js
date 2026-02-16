@@ -72,9 +72,8 @@ testimonials.forEach((_, index) => {
 
 const dots = document.querySelectorAll(".testimonial-dots span");
 
-/* Show */
+/* Show Slide */
 function showTestimonial(index) {
-
   testimonials.forEach((item, i) => {
     item.classList.toggle("active", i === index);
     dots[i].classList.toggle("active", i === index);
@@ -85,7 +84,6 @@ function showTestimonial(index) {
 
 /* Auto Slide */
 function autoSlide() {
-
   currentTestimonial++;
 
   if (currentTestimonial >= testimonials.length) {
@@ -95,7 +93,7 @@ function autoSlide() {
   showTestimonial(currentTestimonial);
 }
 
-/* Reset */
+/* Reset Timer */
 function resetInterval() {
   clearInterval(slideInterval);
   slideInterval = setInterval(autoSlide, 5000);
@@ -104,22 +102,21 @@ function resetInterval() {
 /* Start */
 slideInterval = setInterval(autoSlide, 5000);
 
-/* ================= SWIPE ================= */
+/* Swipe Support */
 
 let startX = 0;
 let endX = 0;
 
-slider.addEventListener("touchstart", e => {
+slider.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
 });
 
-slider.addEventListener("touchend", e => {
+slider.addEventListener("touchend", (e) => {
   endX = e.changedTouches[0].clientX;
   handleSwipe();
 });
 
 function handleSwipe() {
-
   const threshold = 50;
 
   if (startX - endX > threshold) {
@@ -133,7 +130,6 @@ function handleSwipe() {
 
 /* Next */
 function nextTestimonial() {
-
   currentTestimonial++;
 
   if (currentTestimonial >= testimonials.length) {
@@ -146,7 +142,6 @@ function nextTestimonial() {
 
 /* Previous */
 function prevTestimonial() {
-
   currentTestimonial--;
 
   if (currentTestimonial < 0) {
