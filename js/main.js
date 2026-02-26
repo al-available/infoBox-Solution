@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="community-links">
 
-          <a href="https://wa.me/233501234567" target="_blank">
+          <a href="https://chat.whatsapp.com/BIEWmAksCuLIMJ3AceDxR5?mode=gi_t" target="_blank">
              WhatsApp Group
           </a>
 
@@ -404,7 +404,7 @@ const showPremiumPopup = () => {
       <p>You selected Premium Group access.</p>
 
       <div class="community-links">
-        <a href="https://t.me/yourpremiumchannel" target="_blank">
+        <a href="https://t.me/+L1b-sF_5dyY4ZjM0" target="_blank">
           Join Premium Telegram Channel
         </a>
       </div>
