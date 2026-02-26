@@ -318,7 +318,7 @@ width: 90%;
   .btn-primary,
   .btn-secondary {
     width: 100%;
-    max-width: 28rem;
+    max-width: 18rem;
     justify-content: center;
   }
 
