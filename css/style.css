@@ -344,12 +344,27 @@ aside > a:not(:last-child)::after{
   }
 }
 
-/* ================= CONTENT ================= */
+/* ================= CONTENT (GLASSMORPHISM) ================= */
 .hero-content {
   max-width: 80rem;
   text-align: center;
 
   animation: heroSlideUp 0.9s cubic-bezier(.22,.61,.36,1) both;
+
+  /* Glassmorphism */
+  background: rgba(10, 20, 40, 0.45);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+
+  border-radius: 2rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25);
+
+  padding: 3.5rem 4rem;
 }
 
 /* ================= BADGE ================= */
@@ -529,6 +544,97 @@ aside > a:not(:last-child)::after{
   }
 }
 
+
+/* =====================================================
+   HERO BACKGROUND SLIDER (ADDED)
+===================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Slider container */
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Background images */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  object-fit: contain;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0;
+
+  animation:
+    kenburns-bottom 12s linear infinite,
+    slideShow 36s infinite;
+}
+
+/* Timing */
+.slide:nth-child(1) {
+  animation-delay: 0s, 0s;
+}
+
+.slide:nth-child(2) {
+  animation-delay: 0s, 12s;
+}
+
+.slide:nth-child(3) {
+  animation-delay: 0s, 24s;
+}
+
+/* Fade */
+@keyframes slideShow {
+
+  0%   { opacity: 0; }
+  8%   { opacity: 1; }
+  30%  { opacity: 1; }
+  38%  { opacity: 0; }
+  100% { opacity: 0; }
+
+}
+
+/* Overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 1;
+}
+
+/* Keep content above */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ================= KEN BURNS ================= */
+
+@keyframes kenburns-bottom {
+
+  0% {
+    transform: scale(1) translateY(0);
+    transform-origin: 50% 84%;
+  }
+
+  100% {
+    transform: scale(1.25) translateY(15px);
+    transform-origin: bottom;
+  }
+
+}
 /* ========== STATS SECTION ========== */
 .stats {
   background:
