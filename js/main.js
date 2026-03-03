@@ -162,11 +162,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= VFS KEY ================= */
   const WEB3FORMS_ACCESS_KEY = [
-    "2f11c8a8",
-    "ed81",
-    "475f",
-    "9755",
-    "6cb687139c00"
+    "af41b958",
+    "69cd",
+    "432b",
+    "a915",
+    "235b515099cb"
   ].join("-");
 
   const RATE_LIMIT_KEY = "vfs_enroll_last_submit";
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="community-links">
 
-          <a href="https://chat.whatsapp.com/BIEWmAksCuLIMJ3AceDxR5?mode=gi_t" target="_blank">
+          <a href="whatsapp://chat?code=BIEWmAksCuLIMJ3AceDxR5" target="_blank">
              WhatsApp Group
           </a>
 
@@ -633,8 +633,8 @@ const showPremiumPopup = () => {
       valid = false;
     }
 
-    if (formFields.background.value.trim().length < 50) {
-      showFieldError(formFields.background, "Min 50 characters");
+    if (formFields.background.value.trim().length < 10) {
+      showFieldError(formFields.background, "Min 10 characters");
       valid = false;
     }
 
