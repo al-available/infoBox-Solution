@@ -404,7 +404,7 @@ const showPremiumPopup = () => {
       <p>You selected Premium Group access.</p>
 
       <div class="community-links">
-        <a href="https://t.me/+L1b-sF_5dyY4ZjM0" target="_blank">
+        <a href="https://t.me/InfoBoxSolution_bot" target="_blank">
           Join Premium Telegram Channel
         </a>
       </div>
